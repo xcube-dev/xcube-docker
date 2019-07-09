@@ -3,7 +3,7 @@
 
 about:
   summary: "XCube"
-  home: https://github.com/dcs4cops/xcube
+  home: https://github.com/dcs4cop/xcube
   license: MIT
   license_file: LICENSE
 
@@ -21,7 +21,7 @@ build:
 
 source:
   # git_rev: 0.2.0.dev3
-  git_url: https://github.com/dcs4cops/xcube
+  git_url: https://github.com/dcs4cop/xcube
 
 requirements:
   build:
