@@ -1,0 +1,132 @@
+# See https://conda.io/docs/building/meta-yaml.html
+# for more information about this file.
+
+about:
+  summary: "XCube"
+  home: https://github.com/dcs4cops/xcube
+  license: MIT
+  license_file: LICENSE
+
+package:
+  name: xcube
+  version: "0.2.0.dev3"
+
+build:
+  number: 0
+  entry_points:
+    # Put any entry points (scripts to be generated automatically) here.
+    - xcube = xcube.cli.cli:main
+    - xcube-gen = xcube.cli.gen:main
+    - xcube-restime = xcube.cli.restime:main
+
+source:
+  # git_rev: 0.2.0.dev3
+  git_url: https://github.com/dcs4cops/xcube
+
+requirements:
+  build:
+    - python =3.7
+    # Required
+    - affine =2.2
+    - blas =*=mkl
+    - click =7.0
+    - cmocean =2.0
+    - dask =1.2
+    - fiona =1.8
+    - gdal =2.4
+    - matplotlib =3.0
+    - netcdf4 =1.5.0
+    - numba =0.43
+    - numpy =1.16
+    - pandas =0.24
+    - pillow =6.0
+    - proj4 =6.0
+    - pyyaml =5.1
+    - rasterio =1.0
+    - s3fs =0.2
+    - scipy =1.2
+    - setuptools =41.0
+    - shapely =1.6
+    - tornado =6.0
+    - xarray =0.12
+    - zarr =2.3
+    - sphinx =2.0.1
+    # Optional
+    - cmocean =2.0
+  run:
+    - python =3.7
+    # Required
+    - affine =2.2
+    - blas =*=mkl
+    - click =7.0
+    - cmocean =2.0
+    - dask =1.2
+    - fiona =1.8
+    - gdal =2.4
+    - matplotlib =3.0
+    - netcdf4 =1.5.0
+    - numba =0.43
+    - numpy =1.16
+    - pandas =0.24
+    - pillow =6.0
+    - proj4 =6.0
+    - pyyaml =5.1
+    - rasterio =1.0
+    - s3fs =0.2
+    - scipy =1.2
+    - setuptools =41.0
+    - shapely =1.6
+    - tornado =6.0
+    - xarray =0.12
+    - zarr =2.3
+    - sphinx =2.0.1
+    # Optional
+    - cmocean =2.0
+  test:
+    - python =3.7
+    # Required
+    - affine =2.2
+    - blas =*=mkl
+    - click =7.0
+    - cmocean =2.0
+    - dask =1.2
+    - fiona =1.8
+    - gdal =2.4
+    - matplotlib =3.0
+    - netcdf4 =1.5.0
+    - numba =0.43
+    - numpy =1.16
+    - pandas =0.24
+    - pillow =6.0
+    - proj4 =6.0
+    - pyyaml =5.1
+    - rasterio =1.0
+    - s3fs =0.2
+    - scipy =1.2
+    - setuptools =41.0
+    - shapely =1.6
+    - tornado =6.0
+    - xarray =0.12
+    - zarr =2.3
+    - sphinx =2.0.1
+    # Optional
+    - cmocean =2.0
+    # Testing
+    - flake8 =3.7
+    - pytest =4.4
+    - pytest-cov =2.6
+
+test:
+  # Python imports
+  imports:
+    - xcube
+
+  commands:
+    # You can put test commands to be run here.  Use this to test that the
+    # entry points work.
+    - xcube --help
+
+  requires:
+    # Put any additional test requirements here.
+    - pytest
+    - pytest-cov

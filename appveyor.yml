@@ -1,0 +1,36 @@
+# version here is only relevant for the AppVeyor CI, no need to adjust
+version: '{build}'
+
+environment:
+  global:
+    PYTHON_LOC: "C:\\Miniconda37-x64"
+
+install:
+  - call %PYTHON_LOC%\Scripts\activate.bat
+  - conda config --set always_yes yes --set changeps1 no
+  - conda install -y conda-build=3.17.8 anaconda-client
+
+build_script:
+  - set MPLCONFIGDIR="."
+  - conda build --old-build-string --no-test -c conda-forge recipes
+
+deploy_script:
+  # only publish artifacts on master branch when pushed (not from cron or PRs)
+  - ps: |
+      if ( $env:APPVEYOR_SCHEDULED_BUILD -eq "True" ) {
+          write-output "CRON build, won't deploy to anaconda"
+      } else {
+          $env:conda_upload = 'true'
+      }
+  - ps: |
+      if ([bool]$env:APPVEYOR_PULL_REQUEST_NUMBER) {
+          write-output "PULL REQUEST build, won't deploy to anaconda"
+      } else {
+          $env:conda_upload = 'true'
+      }
+  - ps: |
+      if ($env:APPVEYOR_REPO_BRANCH -eq 'master') {
+          $env:conda_upload = 'true'
+      }
+  - cmd: IF "%conda_upload%"=="true" anaconda -v -t %ANACONDA_TOKEN% upload %PYTHON_LOC%\conda-bld\win-64\xcube*.tar.bz2 -u xcube --force
+  - echo "Finished Artifact Deployment"
