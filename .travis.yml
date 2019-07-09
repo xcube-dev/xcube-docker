@@ -17,7 +17,7 @@ install:
   - bash miniconda.sh -b -p $HOME/miniconda
   - export PATH="$HOME/miniconda/bin:$PATH"
   - hash -r
-  - conda config --set always_yes yes --set changeps1 no
+  - conda config --set always_yes yes --set changeps1 no --set anaconda_upload yes
   - conda update conda
   - conda info -a
   - conda install conda-verify conda-build=3.17.8 anaconda-client
