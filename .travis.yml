@@ -23,5 +23,5 @@ install:
   - conda install conda-verify conda-build=3.17.8 anaconda-client
 
 script:
-  - conda build --old-build-string -c conda-forge recipes
+  - conda build -c conda-forge xcube
   - ./upload_to_anaconda_cloud.sh xcube
