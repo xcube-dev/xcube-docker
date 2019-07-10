@@ -17,6 +17,4 @@ script:
   - conda build -c conda-forge -c default xcube
 
 after_success:
-  - anaconda -v -t ${anaconda_token} upload /home/travis/miniconda/conda-bld/linux-64/xcube-0.2.0.dev3-py36_0.tar.bz2 -u bc-dev --force
-  - anaconda -v -t ${anaconda_token} upload /home/travis/miniconda/conda-bld/linux-64/xcube-0.2.0.dev3-py37_0.tar.bz2 -u bc-dev --force
   - .  upload_to_anaconda_cloud.sh xcube
