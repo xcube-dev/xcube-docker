@@ -20,7 +20,7 @@ install:
   - conda config --set always_yes yes --set changeps1 no --set anaconda_upload yes
   - conda update conda
   - conda info -a
-  - conda install conda-verify conda-build
+  - conda install conda-verify conda-build anaconda-client
 
 script:
   - conda build -c conda-forge xcube
