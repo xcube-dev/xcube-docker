@@ -14,19 +14,19 @@ if [[ "$TRAVIS_BRANCH" = "xcube98_dzelge_conda_package_deploy" ]]; then
 
 		echo "Converting package to other platforms"
 		platforms=( osx-64 win-64 )
-		echo "Uploading packages to conda"
 
         for platform in "${platforms[@]}"
         do
-            echo "Converting: ${CONDA_PACKAGE} to ${platform}"
+           echo "Converting: ${CONDA_PACKAGE} to ${platform}"
+           echo conda convert --platform ${platform} ${CONDA_PACKAGE}  -o $HOME/miniconda/conda-bld/
            conda convert --platform ${platform} ${CONDA_PACKAGE}  -o $HOME/miniconda/conda-bld/
         done
 
-
 		echo "Uploading packages to conda"
-		find $HOME/miniconda/conda-bld/ -name *.tar.bz2 | while read file
+		find $HOME/miniconda/conda-bld/*/xcube* -name *.tar.bz2 | while read file
 		do
 			echo "Uploading: ${file}"
+			echo anaconda -v -t ${anaconda_token} upload ${file} -u bc-dev --force;
 			anaconda -v -t ${anaconda_token} upload ${file} -u bc-dev --force;
 		done
     else
