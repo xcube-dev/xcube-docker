@@ -9,14 +9,14 @@ echo
 
 if [[ "$TRAVIS_BRANCH" = "xcube98_dzelge_conda_package_deploy" ]]; then
     if [[ "$TRAVIS_EVENT_TYPE" = "api" || "$TRAVIS_EVENT_TYPE" = "push" ]]; then
-        CONDA_PACKAGE=$(conda build -c conda-forge -c defaults recipes --output);
+        CONDA_PACKAGE=$(conda build -c conda-forge -c defaults xcube --output);
         echo "Processing ${CONDA_PACKAGE}"
 
 		echo "Converting package to other platforms"
-		platforms=( osx-64 linux-32 linux-64 win-32 win-64 )
+		platforms=( osx-64 win-64 )
 		for platform in "${platforms[@]}"
 		do
-		   conda convert --platform ${CONDA_PACKAGE}  -o $HOME/conda-bld/
+		   conda convert --platform ${platform} ${CONDA_PACKAGE}  -o $HOME/miniconda/conda-bld/
 		done
 
 		echo "Uploading packages to conda"
