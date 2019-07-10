@@ -18,5 +18,5 @@ install:
   - conda install conda-verify conda-build anaconda-client
 
 script:
-  - conda build -c conda-forge xcube
+  - conda build -c conda-forge -c default xcube
   - .  upload_to_anaconda_cloud.sh xcube

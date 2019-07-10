@@ -12,23 +12,25 @@ if [[ "$TRAVIS_BRANCH" = "xcube98_dzelge_conda_package_deploy" ]]; then
         CONDA_PACKAGE=$(conda build -c conda-forge -c defaults xcube --output);
         echo "Processing ${CONDA_PACKAGE}"
 
-		echo "Converting package to other platforms"
-		platforms=( osx-64 win-64 )
+        echo "Converting package to other platforms"
+        platforms=( osx-64 win-64 )
 
-        for platform in "${platforms[@]}"
+        for package in "${CONDA_PACKAGE[@]}"
         do
-           echo "Converting: ${CONDA_PACKAGE} to ${platform}"
-           echo conda convert --platform ${platform} ${CONDA_PACKAGE}  -o $HOME/miniconda/conda-bld/
-           conda convert --platform ${platform} ${CONDA_PACKAGE}  -o $HOME/miniconda/conda-bld/
+            for platform in "${platforms[@]}"
+            do
+                echo "Converting: ${package}"
+                conda convert --platform ${platform} ${package}  -o $HOME/minoconda3/conda-bld/
+            done
         done
 
-		echo "Uploading packages to conda"
-		find $HOME/miniconda/conda-bld/*/xcube* -name *.tar.bz2 | while read file
-		do
-			echo "Uploading: ${file}"
-			echo anaconda -v -t ${anaconda_token} upload ${file} -u bc-dev --force;
-			anaconda -v -t ${anaconda_token} upload ${file} -u bc-dev --force;
-		done
+        echo "Uploading packages to conda"
+        find $HOME/minoconda/conda-bld/ -name *.tar.bz2 | while read file
+        do
+            echo "Uploading: ${file}"
+            echo anaconda -v -t ${anaconda_token} upload ${file} -u bc-dev --force;
+            anaconda -v -t ${anaconda_token} upload ${file} -u bc-dev --force;
+        done
     else
         echo "NOT uploading to Anaconda Cloud, because this is the wrong event type";
         echo "event $TRAVIS_EVENT_TYPE"
