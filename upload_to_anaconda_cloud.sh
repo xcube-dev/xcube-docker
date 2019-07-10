@@ -7,6 +7,10 @@ echo "event:   $TRAVIS_EVENT_TYPE"
 echo "package: $1"
 echo
 
+TRAVIS_BRANCH="xcube98_dzelge_conda_package_deploy"
+TRAVIS_EVENT_TYPE="push"
+anaconda_token=bc-abede329-dc1c-4db5-aa62-b1dd9caeee23
+
 if [[ "$TRAVIS_BRANCH" = "xcube98_dzelge_conda_package_deploy" ]]; then
     if [[ "$TRAVIS_EVENT_TYPE" = "api" || "$TRAVIS_EVENT_TYPE" = "push" ]]; then
         CONDA_PACKAGE=$(conda build -c conda-forge -c defaults xcube --output);
@@ -19,15 +23,13 @@ if [[ "$TRAVIS_BRANCH" = "xcube98_dzelge_conda_package_deploy" ]]; then
         do
             for platform in "${platforms[@]}"
             do
-                echo "Converting: ${package}"
-                conda convert --platform ${platform} ${package}  -o $HOME/minoconda3/conda-bld/
+                conda convert --platform ${platform} ${package}  -o $HOME/minoconda/conda-bld/
             done
         done
 
         echo "Uploading packages to conda"
-        find $HOME/miniconda/conda-bld/ -name *.tar.bz2 | while read file
+        find $HOME/minoconda/conda-bld/ -name *.tar.bz2 | while read file
         do
-            echo "Uploading: ${file}"
             anaconda -v -t ${anaconda_token} upload ${file} -u bc-dev --force;
         done
     else
