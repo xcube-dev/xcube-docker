@@ -25,10 +25,9 @@ if [[ "$TRAVIS_BRANCH" = "xcube98_dzelge_conda_package_deploy" ]]; then
         done
 
         echo "Uploading packages to conda"
-        find $HOME/minoconda/conda-bld/ -name *.tar.bz2 | while read file
+        find $HOME/miniconda/conda-bld/ -name *.tar.bz2 | while read file
         do
             echo "Uploading: ${file}"
-            echo anaconda -v -t ${anaconda_token} upload ${file} -u bc-dev --force;
             anaconda -v -t ${anaconda_token} upload ${file} -u bc-dev --force;
         done
     else
