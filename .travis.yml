@@ -19,3 +19,5 @@ script:
 deploy:
   - provider: script
     script: bash upload_to_anaconda_cloud.sh xcube
+  on:
+    branch: xcube98_dzelge_conda_package_deploy
