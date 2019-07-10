@@ -79,9 +79,9 @@ requirements:
     - cmocean =2.0
   test:
     # Testing
-    - flake8 =3.7
+    #- flake8 =3.7
     - pytest =4.4
-    - pytest-cov =2.6
+    #- pytest-cov =2.6
 
 test:
   # Python imports
@@ -96,7 +96,7 @@ test:
   requires:
     # Put any additional test requirements here.
     - pytest
-    - pytest-cov
+    #- pytest-cov
 
 about:
   summary: "XCube"
