@@ -11,15 +11,15 @@ TRAVIS_BRANCH="xcube98_dzelge_conda_package_deploy"
 TRAVIS_EVENT_TYPE="push"
 anaconda_token=bc-abede329-dc1c-4db5-aa62-b1dd9caeee23
 
-if [[ "$TRAVIS_BRANCH" = "xcube98_dzelge_conda_package_deploy" ]]; then
+if [[ "$TRAVIS_BRANCH" = "master" ]]; then
     if [[ "$TRAVIS_EVENT_TYPE" = "api" || "$TRAVIS_EVENT_TYPE" = "push" ]]; then
-        CONDA_PACKAGE=$(conda build -c conda-forge -c defaults xcube --output);
-        echo "Processing ${CONDA_PACKAGE}"
+        CONDA_PACKAGES=( $(conda build -c conda-forge -c defaults xcube --output) )
+        echo "Processing ${CONDA_PACKAGES}"
 
         echo "Converting package to other platforms"
         platforms=( osx-64 win-64 )
 
-        for package in "${CONDA_PACKAGE[@]}"
+        for package in "${CONDA_PACKAGES[@]}"
         do
             for platform in "${platforms[@]}"
             do
