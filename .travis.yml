@@ -14,7 +14,6 @@ install:
   - conda install conda-verify conda-build anaconda-client
 
 script:
-  - echo "Building"
   - conda build -c conda-forge -c default xcube
 
 deploy:
