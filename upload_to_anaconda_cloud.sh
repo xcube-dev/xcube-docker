@@ -9,18 +9,29 @@ echo
 
 if [[ "$TRAVIS_BRANCH" = "xcube98_dzelge_conda_package_deploy" ]]; then
     if [[ "$TRAVIS_EVENT_TYPE" = "api" || "$TRAVIS_EVENT_TYPE" = "push" ]]; then
-        CONDA_PACKAGE=$(conda build -c conda-forge -c defaults xcube --output);
-        echo "Processing ${CONDA_PACKAGE}"
+        echo "Start uploading process"
 
-		echo "Converting package to other platforms"
+		echo "Converting packages to other platforms"
 		platforms=( osx-64 win-64 )
-		for platform in "${platforms[@]}"
+		find $HOME/miniconda/conda-bld/ -name *.tar.bz2 | while read file
 		do
-		   conda convert --platform ${platform} ${CONDA_PACKAGE}  -o $HOME/miniconda/conda-bld/
+			for platform in "${platforms[@]}"
+            do
+                echo "Converting: ${file} to ${platform}"
+               conda convert --platform ${platform} ${file}  -o $HOME/miniconda/convert-bld/
+            done
 		done
 
+
 		echo "Uploading packages to conda"
-		find $HOME/conda-bld/ -name *.tar.bz2 | while read file
+		find $HOME/miniconda/conda-bld/ -name *.tar.bz2 | while read file
+		do
+			echo "Uploading: ${file}"
+			anaconda -v -t ${anaconda_token} upload ${file} -u bc-dev --force;
+		done
+
+		echo "Uploading converted packages to conda"
+		find $HOME/miniconda/convert-bld/ -name *.tar.bz2 | while read file
 		do
 			echo "Uploading: ${file}"
 			anaconda -v -t ${anaconda_token} upload ${file} -u bc-dev --force;
