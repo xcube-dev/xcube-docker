@@ -7,7 +7,7 @@ echo "event:   $TRAVIS_EVENT_TYPE"
 echo "package: $1"
 echo
 
-if [[ "$TRAVIS_BRANCH" = "master" ]]; then
+if [[ "$TRAVIS_BRANCH" = "xcube98_dzelge_conda_package_deploy" ]]; then
     if [[ "$TRAVIS_EVENT_TYPE" = "api" || "$TRAVIS_EVENT_TYPE" = "push" ]]; then
         CONDA_PACKAGE=$(conda build --old-build-string -c conda-forge -c defaults recipes --output);
 
