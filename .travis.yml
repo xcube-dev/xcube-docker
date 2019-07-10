@@ -24,4 +24,4 @@ install:
 
 script:
   - conda build -c conda-forge xcube
-  #- ./upload_to_anaconda_cloud.sh xcube
+  - ./upload_to_anaconda_cloud.sh xcube
