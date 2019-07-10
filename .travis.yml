@@ -16,5 +16,6 @@ install:
 script:
   - conda build -c conda-forge -c default xcube
 
-after_success:
-  - .  upload_to_anaconda_cloud.sh xcube
+deploy:
+  - provider: script
+    script: bash upload_to_anaconda_cloud.sh xcube
