@@ -22,7 +22,6 @@ before_deploy:
   - git config --local user.email "helge.dzierzon@brockmann-consult.de"
   - export TRAVIS_TAG=${TRAVIS_TAG:-$(date +'%Y%m%d%H%M%S')-$(git log --format=%h -1)}
   - git tag $TRAVIS_TAG
-  - CONDA_PACKAGES=( $(conda build -c conda-forge -c defaults ${1} --output) )
 deploy:
   # Upload build result to
   - provider: script
@@ -31,7 +30,8 @@ deploy:
       branch: xcube98_dzelge_conda_package_deploy
   - provider: releases
     github_token: ${github_token}
-    file: ${CONDA_PACKAGES[0]}
+    file_glob: true
+    file: $HOME/miniconda/conda-bld/**/*.tar.bz2
     skip_cleanup: true
     draft: true
     on:
