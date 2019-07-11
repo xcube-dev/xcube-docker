@@ -1,0 +1,54 @@
+From eea8529bddfe22766b4e85160fb2fcab9f2aca5a Mon Sep 17 00:00:00 2001
+From: Mario Costa <you@example.com>
+Date: Tue, 11 Dec 2018 10:29:51 +0000
+Subject: [PATCH] fix for issue  #501
+
+---
+ binstar_client/__init__.py    | 14 +++++++-------
+ binstar_client/scripts/cli.py |  2 +-
+ 2 files changed, 8 insertions(+), 8 deletions(-)
+
+diff --git a/binstar_client/__init__.py b/binstar_client/__init__.py
+index 46c0985..0bc16b6 100644
+--- a/binstar_client/__init__.py
++++ b/binstar_client/__init__.py
+@@ -215,19 +215,19 @@ def _check_response(self, res, allowed=[200]):
+             except:
+                 pass
+             else:
+-                msg = data.get('error', msg)
++                msg += '\n' + data['error'] if data.get('error', None) else ''
+
+-            ErrCls = errors.BinstarError
++            ErrCls = errors.BinstarError(msg)
+             if res.status_code == 401:
+-                ErrCls = errors.Unauthorized
++                ErrCls = errors.Unauthorized(msg)
+             elif res.status_code == 404:
+-                ErrCls = errors.NotFound
++                ErrCls = errors.NotFound(msg)
+             elif res.status_code == 409:
+-                ErrCls = errors.Conflict
++                ErrCls = errors.Conflict(msg)
+             elif res.status_code >= 500:
+-                ErrCls = errors.ServerError
++                ErrCls = errors.ServerError(msg)
+
+-            raise ErrCls(msg, res.status_code)
++            raise ErrCls
+
+     def user(self, login=None):
+         '''
+diff --git a/binstar_client/scripts/cli.py b/binstar_client/scripts/cli.py
+index 7a5c8bb..6534a84 100644
+--- a/binstar_client/scripts/cli.py
++++ b/binstar_client/scripts/cli.py
+@@ -45,7 +45,7 @@ def file_or_token(value):
+
+ def _custom_excepthook(logger, show_traceback=False):
+     def excepthook(exc_type, exc_value, exc_traceback):
+-        if issubclass(exc_type, KeyboardInterrupt) or not issubclass(exc_type, errors.ServerError):
++        if issubclass(exc_type, KeyboardInterrupt):
+             return
+
+         if show_traceback:
