@@ -22,15 +22,18 @@ before_deploy:
   - git config --local user.email "helge.dzierzon@brockmann-consult.de"
   - export TRAVIS_TAG=${TRAVIS_TAG:-$(date +'%Y%m%d%H%M%S')-$(git log --format=%h -1)}
   - git tag $TRAVIS_TAG
-  - tar czvf build_$TRAVIS_TAG.tgz .
+  - cd ..
+  - tar czvf src_$TRAVIS_TAG.tgz xcube
+  - cd xcube && mv ../src_$TRAVIS_TAG.tgz .
 deploy:
+  # Upload build result to
   - provider: script
     script: bash upload_to_anaconda_cloud.sh xcube
     on:
       branch: xcube98_dzelge_conda_package_deploy
   - provider: releases
-    github_token: '7d388fb45da5cb003de134e82f290cf4a3cd8d3b'
-    file: build_$TRAVIS_TAG.tgz
+    github_token: ${github_token}
+    file: src_$TRAVIS_TAG.tgz
     skip_cleanup: true
     draft: true
     on:
