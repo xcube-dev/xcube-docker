@@ -27,4 +27,5 @@ find $HOME/miniconda/conda-bld/ -name *.tar.bz2 | while read file
 do
     echo anaconda -v -t ${anaconda_token} upload ${file} -u bc-dev --force;
     anaconda -v -t ${anaconda_token} upload ${file} -u bc-dev --force;
+    echo $?
 done
