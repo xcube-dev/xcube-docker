@@ -24,5 +24,5 @@ echo "Start Processing"
 echo "Uploading packages to conda"
 find $HOME/miniconda/conda-bld/ -name *.tar.bz2 | while read file
 do
-    anaconda -v -t ${anaconda_token} upload ${file} -u bc-dev --force;
+    anaconda -v -t ${anaconda_token} upload ${CONDA_PACKAGE} -u bc-dev --force;
 done
