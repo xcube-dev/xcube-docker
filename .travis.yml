@@ -17,8 +17,8 @@ install:
   - conda config --set always_yes yes --set changeps1 no # --set anaconda_upload yes --add channels https://conda.anaconda.org/t/bc-abede329-dc1c-4db5-aa62-b1dd9caeee23/bc-dev
   - conda update -n base conda
   - conda info -a
-  - conda install -c anaconda conda-verify conda-build anaconda-client
-  #- pip install git+https://github.com/dzelge/anaconda-client.git
+  - conda install -c anaconda conda-verify conda-build
+  - pip install git+https://github.com/dzelge/anaconda-client.git
 
 script:
   - conda build -c conda-forge -c default xcube
