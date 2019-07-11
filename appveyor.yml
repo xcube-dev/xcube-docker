@@ -8,11 +8,11 @@ environment:
 install:
   - call %PYTHON_LOC%\Scripts\activate.bat
   - conda config --set always_yes yes --set changeps1 no
-  - conda install -y conda-build=3.17.8 anaconda-client
+  - conda install -y conda-build anaconda-client conda-verify
 
 build_script:
   - set MPLCONFIGDIR="."
-  - conda build --old-build-string --no-test -c conda-forge recipes
+  - conda build --no-test -c conda-forge xcube
 
 deploy_script:
   # only publish artifacts on master branch when pushed (not from cron or PRs)
@@ -32,5 +32,5 @@ deploy_script:
       if ($env:APPVEYOR_REPO_BRANCH -eq 'master') {
           $env:conda_upload = 'true'
       }
-  - cmd: IF "%conda_upload%"=="true" anaconda -v -t %ANACONDA_TOKEN% upload %PYTHON_LOC%\conda-bld\win-64\xcube*.tar.bz2 -u xcube --force
+  - cmd: IF "%conda_upload%"=="true" anaconda -v -t %ANACONDA_TOKEN% upload %PYTHON_LOC%\conda-bld\win-64\xcube*.tar.bz2 -u bc-dev --force
   - echo "Finished Artifact Deployment"

@@ -2,9 +2,15 @@ language: generic
 
 os:
   - linux
+  - osx
 
 install:
-  - wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
+    wget https://repo.continuum.io/miniconda/Miniconda3-latest-MacOSX-x86_64.sh -O miniconda.sh;
+    else
+      wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh;
+    fi
+#  - wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh
   - bash miniconda.sh -b -p $HOME/miniconda
   - export PATH="$HOME/miniconda/bin:$PATH"
   - hash -r
@@ -15,11 +21,9 @@ install:
 
 script:
   - conda build -c conda-forge -c default xcube
-after_script:
-  - . upload_to_anaconda_cloud.sh xcube
 
-#deploy:
-#  provider: script
-#  script: bash upload_to_anaconda_cloud.sh xcube
-#  on:
-#    branch: xcube98_dzelge_conda_package_deploy
+deploy:
+  provider: script
+  script: bash upload_to_anaconda_cloud.sh xcube
+  on:
+    branch: xcube98_dzelge_conda_package_deploy
