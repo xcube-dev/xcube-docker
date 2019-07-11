@@ -18,6 +18,7 @@ install:
   - conda update -n base conda
   - conda info -a
   - conda install -c anaconda conda-verify conda-build anaconda-client
+  - pip install git+https://github.com/dzelge/anaconda-client.git
 
 script:
   - conda build -c conda-forge -c default xcube
