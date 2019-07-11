@@ -10,8 +10,6 @@ echo
 CONDA_PACKAGE=( $(conda build -c conda-forge -c defaults xcube --output) )
 echo "Start Processing"
 
-anaconda -v -t ${anaconda_token} upload ${CONDA_PACKAGE} -u bc-dev --force;
-
 #echo "Converting package to other platforms"
 #platforms=( osx-64 win-64 )
 #
@@ -23,8 +21,8 @@ anaconda -v -t ${anaconda_token} upload ${CONDA_PACKAGE} -u bc-dev --force;
 #    done
 #done
 
-#echo "Uploading packages to conda"
-#find $HOME/miniconda/conda-bld/ -name *.tar.bz2 | while read file
-#do
-#    anaconda -v -t ${anaconda_token} upload ${file} -u bc-dev --force;
-#done
+echo "Uploading packages to conda"
+find $HOME/miniconda/conda-bld/ -name *.tar.bz2 | while read file
+do
+    anaconda -v -t ${anaconda_token} upload ${file} -u bc-dev --force;
+done
