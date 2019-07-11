@@ -17,10 +17,11 @@ install:
   - conda config --set always_yes yes --set changeps1 no
   - conda update -n base conda
   - conda info -a
-  - conda install conda-verify conda-build anaconda-client
+  - conda install -c anaconda conda-verify conda-build anaconda-client
 
 script:
   - conda build -c conda-forge -c default xcube
 
 after_success:
+  - anaconda --version
   - . upload_to_anaconda_cloud.sh xcube
