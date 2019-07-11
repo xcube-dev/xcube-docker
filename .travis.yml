@@ -2,33 +2,36 @@ language: generic
 
 os:
   - linux
-  - osx
 
 install:
-  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
-    wget https://repo.continuum.io/miniconda/Miniconda3-latest-MacOSX-x86_64.sh -O miniconda.sh;
-    else
-      wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh;
-    fi
-#  - wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh
+  - wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh
   - bash miniconda.sh -b -p $HOME/miniconda
   - export PATH="$HOME/miniconda/bin:$PATH"
   - hash -r
   - conda config --set always_yes yes --set changeps1 no # --set anaconda_upload yes --add channels https://conda.anaconda.org/t/bc-abede329-dc1c-4db5-aa62-b1dd9caeee23/bc-dev
   - conda update -n base conda
   - conda info -a
-  - conda install -c anaconda conda-verify conda-build
-  - pip install git+https://github.com/dzelge/anaconda-client.git
+  - conda install -c anaconda conda-verify conda-build anaconda-client
 
 script:
   - conda build -c conda-forge -c default xcube
 
-#after_success:
-#  - anaconda --version
-#  - . upload_to_anaconda_cloud.sh xcube
-
+before_deploy:
+  # Set up git user name and tag this commit
+  - git config --local user.name "dzelge"
+  - git config --local user.email "helge.dzierzon@brockmann-consult.de"
+  - export TRAVIS_TAG=${TRAVIS_TAG:-$(date +'%Y%m%d%H%M%S')-$(git log --format=%h -1)}
+  - git tag $TRAVIS_TAG
+  - tar czvf build_$TRAVIS_TAG.tgz .
 deploy:
-  provider: script
-  script: bash upload_to_anaconda_cloud.sh xcube
-  on:
-    branch: xcube98_dzelge_conda_package_deploy
+  - provider: script
+    script: bash upload_to_anaconda_cloud.sh xcube
+    on:
+      branch: xcube98_dzelge_conda_package_deploy
+  - provider: releases
+    github_token: '7d388fb45da5cb003de134e82f290cf4a3cd8d3b'
+    file: build_$TRAVIS_TAG.tgz
+    skip_cleanup: true
+    draft: true
+    on:
+      branch: xcube98_dzelge_conda_package_deploy
