@@ -9,6 +9,7 @@ install:
   - export PATH="$HOME/miniconda/bin:$PATH"
   - hash -r
   - conda config --set always_yes yes --set changeps1 no # --set anaconda_upload yes --add channels https://conda.anaconda.org/t/bc-abede329-dc1c-4db5-aa62-b1dd9caeee23/bc-dev
+  - conda update -q conda
   - conda info -a
   - conda install -c anaconda conda-verify conda-build anaconda-client
 
@@ -34,11 +35,11 @@ deploy:
     skip_cleanup: true
     on:
       branch: xcube98_dzelge_conda_package_deploy
-  - provider: releases
-    github_token: ${github_token}
-    file_glob: true
-    file: $HOME/miniconda/conda-bld/**/*.tar.bz2
-    skip_cleanup: true
-    draft: true
-    on:
-      branch: xcube98_dzelge_conda_package_deploy
+#  - provider: releases
+#    github_token: ${github_token}
+#    file_glob: true
+#    file: $HOME/miniconda/conda-bld/**/*.tar.bz2
+#    skip_cleanup: true
+#    draft: true
+#    on:
+#      branch: xcube98_dzelge_conda_package_deploy
