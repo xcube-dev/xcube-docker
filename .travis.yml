@@ -31,9 +31,7 @@ deploy:
       branch: xcube98_dzelge_conda_package_deploy
   - provider: releases
     github_token: ${github_token}
-    file:
-      - ${CONDA_PACKAGES[0]}
-      - ${CONDA_PACKAGES[1]}
+    file: ${CONDA_PACKAGES[0]}
     skip_cleanup: true
     draft: true
     on:
