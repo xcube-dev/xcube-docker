@@ -26,13 +26,14 @@ deploy:
   # Upload build result to
   - provider: script
     script: bash upload_to_anaconda_cloud.sh xcube
-    on:
-      branch: xcube98_dzelge_conda_package_deploy
-  - provider: releases
-    github_token: ${github_token}
-    file_glob: true
-    file: $HOME/miniconda/conda-bld/**/*.tar.bz2
     skip_cleanup: true
-    draft: true
     on:
       branch: xcube98_dzelge_conda_package_deploy
+#  - provider: releases
+#    github_token: ${github_token}
+#    file_glob: true
+#    file: $HOME/miniconda/conda-bld/**/*.tar.bz2
+#    skip_cleanup: true
+#    draft: true
+#    on:
+#      branch: xcube98_dzelge_conda_package_deploy
