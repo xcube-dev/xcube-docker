@@ -4,7 +4,7 @@ os:
   - linux
 
 env:
-  - PACKAGE_VERSION="v2.0.0"
+  - PACKAGE_VERSION="v0.2.0dev5"
 
 install:
   - wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh
@@ -38,13 +38,11 @@ deploy:
     script: bash upload_to_anaconda_cloud.sh xcube
     skip_cleanup: true
     on:
-      #tags: true
-      branch: xcube98_dzelge_conda_package_deploy
+      branch:  xcube98_dzelge_conda_package_deploy
   - provider: releases
     api_key: ${github_token}
     #file_glob: true
     #file: $HOME/miniconda/conda-bld/**/*.tar.bz2
     skip_cleanup: true
     on:
-      #tags: true
-      branch: xcube98_dzelge_conda_package_deploy
+      branch:  xcube98_dzelge_conda_package_deploy

@@ -4,7 +4,6 @@ set -e
 
 echo "branch:  $TRAVIS_BRANCH"
 echo "event:   $TRAVIS_EVENT_TYPE"
-echo "repository: ${1}"
 echo
 
 echo "Uploading packages to conda"

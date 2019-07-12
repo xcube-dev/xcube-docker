@@ -4,8 +4,6 @@ set -e
 
 echo "branch:  $TRAVIS_BRANCH"
 echo "event:   $TRAVIS_EVENT_TYPE"
-echo "repository: $1"
-echo
 
 CONDA_PACKAGES=( $(conda build -c conda-forge -c defaults xcube --output) )
 echo "Start Processing"
