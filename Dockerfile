@@ -20,5 +20,4 @@ RUN echo "conda activate xcube" >> ~/.bashrc
 EXPOSE 8000
 
 # Start server
-ENTRYPOINT ["/bin/bash", "-c"]
-CMD ["xcube"]
+ENTRYPOINT ["/bin/bash"]
