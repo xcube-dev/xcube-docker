@@ -15,6 +15,7 @@ install:
   - conda update -q conda
   - conda info -a
   - conda install -c anaconda conda-verify conda-build anaconda-client
+  - curl -O https://raw.githubusercontent.com/lkiesow/automated-quay.io-deployment/master/deploy-on-quay
 
 script:
   - conda build -c conda-forge -c default xcube
@@ -39,10 +40,14 @@ deploy:
     skip_cleanup: true
     on:
       branch:  xcube98_dzelge_conda_package_deploy
-  - provider: releases
-    api_key: ${github_token}
-    #file_glob: true
-    #file: $HOME/miniconda/conda-bld/**/*.tar.bz2
-    skip_cleanup: true
+  - provider: script
+    script: sh deploy-on-quay
     on:
-      branch:  xcube98_dzelge_conda_package_deploy
+      tags: true
+#  - provider: releases
+#    api_key: ${github_token}
+#    #file_glob: true
+#    #file: $HOME/miniconda/conda-bld/**/*.tar.bz2
+#    skip_cleanup: true
+#    on:
+#      branch:  xcube98_dzelge_conda_package_deploy
