@@ -17,10 +17,30 @@ script:
   - conda build -c conda-forge -c default xcube
   - . convert_builts.sh
 
+before_deploy:
+  # Set up git user name and tag this commit
+  - git config --local user.name "dzelge"
+  - git config --local user.email "helge.dzierzon@brockmann-consult.de"
+  - echo $TRAVIS_TAG
+  - export TRAVIS_TAG=${TRAVIS_TAG:-$(date +'%Y%m%d%H%M%S')-$(git log --format=%h -1)}
+  - >
+    if ! [ "$BEFORE_DEPLOY_RUN" ]; then
+      export BEFORE_DEPLOY_RUN=1;
+      git tag "${TRAVIS_TAG}"
+    fi
 deploy:
   # Upload build result to the anaconda cloud
   - provider: script
     script: bash upload_to_anaconda_cloud.sh xcube
     skip_cleanup: true
     on:
+      #branch: xcube98_dzelge_conda_package_deploy
       tags: true
+  - provider: releases
+    api_key: ${github_token}
+    file_glob: true
+    file: $HOME/miniconda/conda-bld/**/*.tar.bz2
+    skip_cleanup: true
+    on:
+      #tags: true
+      branch: xcube98_dzelge_conda_package_deploy
