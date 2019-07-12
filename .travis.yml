@@ -34,13 +34,13 @@ deploy:
     script: bash upload_to_anaconda_cloud.sh xcube
     skip_cleanup: true
     on:
-      #branch: xcube98_dzelge_conda_package_deploy
       tags: true
+      #branch: xcube98_dzelge_conda_package_deploy
   - provider: releases
     api_key: ${github_token}
     file_glob: true
     file: $HOME/miniconda/conda-bld/**/*.tar.bz2
     skip_cleanup: true
     on:
-      #tags: true
-      branch: xcube98_dzelge_conda_package_deploy
+      tags: true
+      #branch: xcube98_dzelge_conda_package_deploy

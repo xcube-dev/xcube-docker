@@ -13,7 +13,7 @@ SHELL ["/bin/bash", "-c"]
 # Update system and install dependencies
 RUN apt-get -y update && apt-get -y upgrade
 
-RUN conda create -n xcube -c bc-dev xcube
+RUN conda create -n xcube -c conda-forge -c bc-dev xcube
 
 # Export web server port 8000
 EXPOSE 8000
