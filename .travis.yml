@@ -34,7 +34,7 @@ deploy:
     script: bash upload_to_anaconda_cloud.sh xcube
     skip_cleanup: true
     on:
-      branch: xcube98_dzelge_conda_package_deploy
+      tags: true
   - provider: releases
     api_key: ${github_token}
     file_glob: true
@@ -42,4 +42,4 @@ deploy:
     skip_cleanup: true
     draft: true
     on:
-      branch: xcube98_dzelge_conda_package_deploy
+      tags: true
