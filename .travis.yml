@@ -39,7 +39,7 @@ deploy:
     script: bash upload_to_anaconda_cloud.sh xcube
     skip_cleanup: true
     on:
-      branch:  xcube98_dzelge_conda_package_deploy
+      tags: true
   - provider: script
     script: sh deploy-on-quay
     on:
