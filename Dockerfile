@@ -5,7 +5,7 @@ FROM continuumio/miniconda3:latest
 MAINTAINER helge.dzierzon@brockmann-consult.de
 
 LABEL name=xcube
-LABEL version=0.2.0.dev2
+LABEL version=0.2.0.dev7
 
 # Ensure usage of bash (simplifies source activate calls)
 SHELL ["/bin/bash", "-c"]
