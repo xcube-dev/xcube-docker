@@ -84,9 +84,10 @@ docker-compose up -d
 
 - conda
   - packages deployed to linux-64, win-64, osx-64 using conda convert
-- anaconda.org
+- [anaconda.org](https://anaconda.org/bc-dev/xcube)
+- [travis-ci.org](https://travis-ci.com/dcs4cop/xcube-conda) 
 - docker / docker-compose
-- quay.io
+- [quay.io](https://quay.io/repository/bcdev/xcube)
 
 ## Dependencies
 
