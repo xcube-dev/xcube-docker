@@ -42,6 +42,7 @@ deploy:
       tags: true
   - provider: script
     script: sh deploy-on-quay
+    skip_cleanup: true
     on:
       tags: true
 #  - provider: releases
