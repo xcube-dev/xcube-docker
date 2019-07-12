@@ -1,5 +1,5 @@
-[![Docker Repository on Quay](https://quay.io/repository/dzelge/xcube/status "Docker Repository on Quay")](https://quay.io/repository/dzelge/xcube)
-[![Build Status](https://travis-ci.com/dzelge/xcube-conda.svg?branch=master)](https://travis-ci.com/dzelge/xcube-conda)
+[![Docker Repository on Quay](https://quay.io/repository/bcdev/xcube/status "Docker Repository on Quay")](https://quay.io/repository/bcdev/xcube)
+[![Build Status](https://travis-ci.com/dcs4cop/xcube-conda.svg?branch=master)](https://travis-ci.com/dcs4cop/xcube-conda)
 [![Anaconda-Server Badge](https://anaconda.org/bc-dev/xcube/badges/latest_release_date.svg)](https://anaconda.org/bc-dev/xcube)
 [![Anaconda-Server Badge](https://anaconda.org/bc-dev/xcube/badges/platforms.svg)](https://anaconda.org/bc-dev/xcube)
 
