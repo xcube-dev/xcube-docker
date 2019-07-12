@@ -4,7 +4,7 @@ os:
   - linux
 
 env:
-  - PACKAGE_VERSION="v0.2.0dev7"
+  - PACKAGE_VERSION="0.2.0dev3"
 
 install:
   - wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh
