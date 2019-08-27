@@ -1,46 +1,22 @@
 [![Docker Repository on Quay](https://quay.io/repository/dzelge/xcube/status "Docker Repository on Quay")](https://quay.io/repository/dzelge/xcube)
-[![Build Status](https://travis-ci.com/dzelge/xcube-conda.svg?branch=master)](https://travis-ci.com/dzelge/xcube-conda)
-[![Anaconda-Server Badge](https://anaconda.org/bc-dev/xcube/badges/latest_release_date.svg)](https://anaconda.org/bc-dev/xcube)
-[![Anaconda-Server Badge](https://anaconda.org/bc-dev/xcube/badges/platforms.svg)](https://anaconda.org/bc-dev/xcube)
 
 # xcube-conda
-Repository for deploying xcube as a conda package
+Repository for deploying xcube as a docker image on [quay.io](https://https://quay.io/repository/dzelge/xcube)
 
 ## Description
-This repository combines a conda and docker build as well as their deployment.
 
-REMARK: The current setup would allow integrating the deployment to the repo xcube.
+The docker images that are hosted on quay.io use the conda forge package xcube.
+In order to update the docker images to a new xcube version, follow these steps:
 
-It follows these steps:
-
-- Change versions in meta.yml, Dockerfile, .travis.yml
-- push to a branch and await build
-- Once build is successful create PR
-- Once PR is accepted the master will be build on travis
-- If that is successful, create a tag or release (and push it if you use the command line)
-- The tag will trigger a travis build. At the end of the travis build, two
-  deployment steps follow (only on tag)
-  - upload all conda packages to the anaconda cloud
-  - trigger a build on quay.io 
+- Update the xcube version in Dockerfile
+- Push the changes and review new build on quay.io
+- When the build is successful, test the image locally
+- When teh local test is successful, create a version release/tag which should be the same as the xcube version
+- The tag will trigger a quay build. Quay will set the docker image version according to the used
+  xcube version/release tag
 - Once the deployment steps have finished and the docker image has been built on quay
-  you can:
-  - use ```conda install -c bc-dev xcube``` to install xcube in a conda environment
-  - user docker image ```quay.io/dzelge/xcube:[version]``` e.g.  ```docker pull quay.io/dzelge/xcube:[version]```
-
-TODO: Change the quay repo and travis accounts and setup the deploy key accordingly  
-
-    
-## Usage for conda images
-
-```bash
-
-conda install -c bc-dev xcube[=version]
-# OR
-conda create pn xcube -c bc-dev xcube[=version]
-
-```
-
-Or use specify the xcube package in an ```environment.yml```.
+  you can use the docker image ```quay.io/dzelge/xcube:[version]``` by e.g.
+  ```docker run quay.io/dzelge/xcube:[version]```
 
 
 ## Usage for Docker images
@@ -83,15 +59,14 @@ docker-compose up -d
 # Technologies and Services
 
 - conda
-  - packages deployed to linux-64, win-64, osx-64 using conda convert
-- [anaconda.org](https://anaconda.org/bc-dev/xcube)
+- [conda-forge.org](https://conda-forge.org/)
 - [travis-ci.org](https://travis-ci.com/dcs4cop/xcube-conda) 
 - docker / docker-compose
-- [quay.io](https://quay.io/repository/bcdev/xcube)
+- [quay.io](https://quay.io/repository/dzelge/xcube)
 
 ## Dependencies
 
-- Can be run using python 3.6 and 3.7 and numpy 1.16
-- For all dependencies for the conda images see [meta.yaml](xcube/meta.yaml)
+- Can be run using python >= 3.6
+
 
 
