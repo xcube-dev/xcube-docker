@@ -1,0 +1,14 @@
+ARG XCUBE_VERSION="0.2.0.dev1"
+FROM quay.io/bcdev/xcube:${XCUBE_VERSION}
+
+# Person responsible
+LABEL maintainer="helge.dzierzon@brockmann-consult.de"
+LABEL name=xcube-jupyterlab
+
+LABEL version=${XCUBE_VERSION}
+
+RUN source activate xcube && conda install jupyterlab
+
+EXPOSE 8888
+
+CMD ["/bin/bash", "-c", "source activate xcube && jupyter lab --ip 0.0.0.0 --no-browser"]
