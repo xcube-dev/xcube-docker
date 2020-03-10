@@ -1,0 +1,67 @@
+version: '3'
+
+services:
+  xcube-python-base:
+    build:
+      context: .
+      dockerfile: xcube-python-base.docker
+      args:
+        - XCUBE_VERSION=${XCUBE_VERSION}
+        - XCUBE_DOCKER_BRANCH=${XCUBE_DOCKER_BRANCH}
+        - XCUBE_USER_NAME=${XCUBE_USER_NAME}
+        - MINICONDA_VERSION=${MINICONDA_VERSION}
+    image: quay.io/bcdev/xcube-python-base:${XCUBE_VERSION}
+  xcube-python-deps:
+    build:
+      context: .
+      dockerfile: xcube-python-deps.docker
+      args:
+        - XCUBE_VERSION=${XCUBE_VERSION}
+        - XCUBE_DOCKER_BRANCH=${XCUBE_DOCKER_BRANCH}
+        - XCUBE_USER_NAME=${XCUBE_USER_NAME}
+    image: quay.io/bcdev/xcube-python-deps:${XCUBE_VERSION}
+  xcube-webapi:
+    build:
+      context: .
+      dockerfile: xcube-webapi.docker
+      args:
+        - XCUBE_VERSION=${XCUBE_VERSION}
+        - XCUBE_DOCKER_BRANCH=${XCUBE_DOCKER_BRANCH}
+        - XCUBE_USER_NAME=${XCUBE_USER_NAME}
+    image: quay.io/bcdev/xcube-webapi:${XCUBE_VERSION}
+    ports:
+      - 4000:4000
+  xcube-jupyterlab:
+    build:
+      context: .
+      dockerfile: xcube-jupyterlab.docker
+      args:
+        - XCUBE_VERSION=${XCUBE_VERSION}
+        - XCUBE_DOCKER_BRANCH=${XCUBE_DOCKER_BRANCH}
+        - XCUBE_USER_NAME=${XCUBE_USER_NAME}
+    image: quay.io/bcdev/xcube-jupyterlab:${XCUBE_VERSION}
+    ports:
+      - "8888:8888"
+  xcube-viewer:
+    build:
+      context: .
+      dockerfile: xcube-viewer.docker
+      args:
+        - XCUBE_VERSION=${XCUBE_VERSION}
+        - XCUBE_DOCKER_BRANCH=${XCUBE_DOCKER_BRANCH}
+        - XCUBE_USER_NAME=${XCUBE_USER_NAME}
+    image: quay.io/bcdev/xcube-viewer:${XCUBE_VERSION}
+    ports:
+      - "80:80"
+#  xcube-gen:
+#    build:
+#      context: .
+#      dockerfile: xcube-gen.docker
+#      args:
+#        - XCUBE_VERSION=${XCUBE_VERSION}
+#        - XCUBE_DOCKER_BRANCH=${XCUBE_DOCKER_BRANCH}
+#        - XCUBE_GEN_VERSION=${XCUBE_GEN_VERSION}
+#        - XCUBE_USER_NAME=${XCUBE_USER_NAME}
+#    image: quay.io/bcdev/xcube-gen:${XCUBE_GEN_VERSION}
+#    ports:
+#      - "8000:8000"
