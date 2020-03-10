@@ -1,21 +1,17 @@
 ARG XCUBE_VERSION
-ARG XCUBE_DOCKER_BUILD
 
-FROM quay.io/bcdev/xcube-python-deps:${XCUBE_VERSION}${XCUBE_DOCKER_BUILD}
+FROM quay.io/bcdev/xcube-python-deps:${XCUBE_VERSION}
 
 ARG XCUBE_VERSION
-ARG XCUBE_DOCKER_BUILD
 ARG XCUBE_BRANCH
 ARG XCUBE_USER_NAME
 
 LABEL maintainer="helge.dzierzon@brockmann-consult.de"
 LABEL name=xcube
 LABEL xcube_version=${XCUBE_VERSION}
-LABEL xcube_build=${XCUBE_DOCKER_BUILD}
 
 RUN echo "Building docker using args:"
 RUN echo "XCUBE_VERSION:${XCUBE_VERSION}"
-RUN echo "XCUBE_BUILD:${XCUBE_BUILD}"
 RUN echo "XCUBE_BRANCH:${XCUBE_BRANCH}"
 
 USER ${XCUBE_USER_NAME}

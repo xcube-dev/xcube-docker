@@ -8,10 +8,9 @@ services:
       args:
         - XCUBE_VERSION=${XCUBE_VERSION}
         - XCUBE_BRANCH=${XCUBE_BRANCH}
-        - XCUBE_DOCKER_BUILD=${XCUBE_DOCKER_BUILD}
         - XCUBE_USER_NAME=${XCUBE_USER_NAME}
         - MINICONDA_VERSION=${MINICONDA_VERSION}
-    image: quay.io/bcdev/xcube-python-base:${XCUBE_VERSION}${XCUBE_DOCKER_BUILD}
+    image: quay.io/bcdev/xcube-python-base:${XCUBE_VERSION}
   xcube-python-deps:
     build:
       context: .
@@ -19,9 +18,8 @@ services:
       args:
         - XCUBE_VERSION=${XCUBE_VERSION}
         - XCUBE_BRANCH=${XCUBE_BRANCH}
-        - XCUBE_DOCKER_BUILD=${XCUBE_DOCKER_BUILD}
         - XCUBE_USER_NAME=${XCUBE_USER_NAME}
-    image: quay.io/bcdev/xcube-python-deps:${XCUBE_VERSION}${XCUBE_DOCKER_BUILD}
+    image: quay.io/bcdev/xcube-python-deps:${XCUBE_VERSION}
   xcube-webapi:
     build:
       context: .
@@ -29,21 +27,19 @@ services:
       args:
         - XCUBE_VERSION=${XCUBE_VERSION}
         - XCUBE_BRANCH=${XCUBE_BRANCH}
-        - XCUBE_DOCKER_BUILD=${XCUBE_DOCKER_BUILD}
         - XCUBE_USER_NAME=${XCUBE_USER_NAME}
-    image: quay.io/bcdev/xcube-webapi:${XCUBE_VERSION}${XCUBE_DOCKER_BUILD}
+    image: quay.io/bcdev/xcube-webapi:${XCUBE_VERSION}
     ports:
       - 4000:4000
   xcube-jupyterlab:
     build:
       context: .
-      dockerfile: xcube-webapi-k8s.docker
+      dockerfile: xcube-jupyterlab.docker
       args:
         - XCUBE_VERSION=${XCUBE_VERSION}
         - XCUBE_BRANCH=${XCUBE_BRANCH}
-        - XCUBE_DOCKER_BUILD=${XCUBE_DOCKER_BUILD}
         - XCUBE_USER_NAME=${XCUBE_USER_NAME}
-    image: quay.io/bcdev/xcube-webapi-k8s:${XCUBE_VERSION}${XCUBE_DOCKER_BUILD}
+    image: quay.io/bcdev/xcube-webapi-k8s:${XCUBE_VERSION}
     ports:
       - "8888:8888"
   xcube-webui:
@@ -53,8 +49,7 @@ services:
       args:
         - XCUBE_VERSION=${XCUBE_VERSION}
         - XCUBE_BRANCH=${XCUBE_BRANCH}
-        - XCUBE_DOCKER_BUILD=${XCUBE_DOCKER_BUILD}
         - XCUBE_USER_NAME=${XCUBE_USER_NAME}
-    image: quay.io/bcdev/xcube-webui:${XCUBE_VERSION}${XCUBE_DOCKER_BUILD}
+    image: quay.io/bcdev/xcube-webui:${XCUBE_VERSION}
     ports:
       - "80:80"
