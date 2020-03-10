@@ -1,0 +1,29 @@
+ARG XCUBE_VERSION
+ARG XCUBE_DOCKER_BUILD
+
+FROM quay.io/bcdev/xcube-python-base:${XCUBE_VERSION}${XCUBE_DOCKER_BUILD}
+
+ARG XCUBE_VERSION
+ARG XCUBE_DOCKER_BUILD
+ARG XCUBE_BRANCH
+ARG XCUBE_USER_NAME
+
+
+LABEL maintainer="helge.dzierzon@brockmann-consult.de"
+LABEL name="xcube python dependencies"
+LABEL xcube_version=${XCUBE_VERSION}
+LABEL xcube_build=${XCUBE_DOCKER_BUILD}
+LABEL xcube_branch=${XCUBE_BRANCH}
+
+
+USER ${XCUBE_USER_NAME}
+
+RUN whoami
+RUN conda create -n xcube -c conda-forge xcube=${XCUBE_VERSION}
+RUN conda clean -afy
+RUN conda info --envs
+RUN source activate xcube && conda list
+
+RUN echo "conda activate xcube" >> ~/.bashrc
+
+CMD ["/bin/bash"]

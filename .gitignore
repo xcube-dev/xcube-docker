@@ -1,4 +1,4 @@
-/.iml
+*.iml
 .idea
 
 # Byte-compiled / optimized / DLL files
@@ -85,7 +85,7 @@ celerybeat-schedule
 *.sage.py
 
 # Environments
-.env
+.env_travis
 .venv
 env/
 venv/
