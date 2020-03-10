@@ -1,7 +1,7 @@
 FROM node:stretch-slim as build-deps
 
 ARG XCUBE_VERSION
-ARG XCUBE_BRANCH
+ARG XCUBE_DOCKER_BRANCH
 ARG XCUBE_USER_NAME
 
 LABEL maintainer="helge.dzierzon@brockmann-consult.de"

@@ -3,11 +3,13 @@ ARG XCUBE_VERSION
 FROM quay.io/bcdev/xcube-python-deps:${XCUBE_VERSION}
 
 ARG XCUBE_VERSION
+ARG XCUBE_DOCKER_BUILD
 ARG XCUBE_DOCKER_BRANCH
+ARG XCUBE_GEN_BRANCH
 ARG XCUBE_USER_NAME
 
 LABEL maintainer="helge.dzierzon@brockmann-consult.de"
-LABEL name=xcube
+LABEL name=XCUBE
 LABEL xcube_version=${XCUBE_VERSION}
 
 RUN echo "Building docker using args:"
@@ -16,4 +18,10 @@ RUN echo "XCUBE_DOCKER_BRANCH:${XCUBE_DOCKER_BRANCH}"
 
 USER ${XCUBE_USER_NAME}
 
-CMD ["/bin/bash", "-c", "source activate xcube && xcube -v -p 4000 -a 0.0.0.0"]
+RUN git clone https://github.com/dcs4cop/xcube-gen
+RUN cd xcube-gen && git checkout $XCUBE_GEN_BRANCH
+RUN source activate xcube && python setup.py install
+
+EXPOSE 8000
+
+CMD ["/bin/bash", "-c", "source activate xcube && jupyterlab --ip 0.0.0.0"]

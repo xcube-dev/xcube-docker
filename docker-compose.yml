@@ -7,7 +7,7 @@ services:
       dockerfile: xcube-python-base.docker
       args:
         - XCUBE_VERSION=${XCUBE_VERSION}
-        - XCUBE_BRANCH=${XCUBE_BRANCH}
+        - XCUBE_DOCKER_BRANCH=${XCUBE_DOCKER_BRANCH}
         - XCUBE_USER_NAME=${XCUBE_USER_NAME}
         - MINICONDA_VERSION=${MINICONDA_VERSION}
     image: quay.io/bcdev/xcube-python-base:${XCUBE_VERSION}
@@ -17,7 +17,7 @@ services:
       dockerfile: xcube-python-deps.docker
       args:
         - XCUBE_VERSION=${XCUBE_VERSION}
-        - XCUBE_BRANCH=${XCUBE_BRANCH}
+        - XCUBE_DOCKER_BRANCH=${XCUBE_DOCKER_BRANCH}
         - XCUBE_USER_NAME=${XCUBE_USER_NAME}
     image: quay.io/bcdev/xcube-python-deps:${XCUBE_VERSION}
   xcube-webapi:
@@ -26,7 +26,7 @@ services:
       dockerfile: xcube-webapi.docker
       args:
         - XCUBE_VERSION=${XCUBE_VERSION}
-        - XCUBE_BRANCH=${XCUBE_BRANCH}
+        - XCUBE_DOCKER_BRANCH=${XCUBE_DOCKER_BRANCH}
         - XCUBE_USER_NAME=${XCUBE_USER_NAME}
     image: quay.io/bcdev/xcube-webapi:${XCUBE_VERSION}
     ports:
@@ -37,9 +37,9 @@ services:
       dockerfile: xcube-jupyterlab.docker
       args:
         - XCUBE_VERSION=${XCUBE_VERSION}
-        - XCUBE_BRANCH=${XCUBE_BRANCH}
+        - XCUBE_DOCKER_BRANCH=${XCUBE_DOCKER_BRANCH}
         - XCUBE_USER_NAME=${XCUBE_USER_NAME}
-    image: quay.io/bcdev/xcube-webapi-k8s:${XCUBE_VERSION}
+    image: quay.io/bcdev/xcube-jupyterlab:${XCUBE_VERSION}
     ports:
       - "8888:8888"
   xcube-webui:
@@ -48,8 +48,20 @@ services:
       dockerfile: xcube-webui.docker
       args:
         - XCUBE_VERSION=${XCUBE_VERSION}
-        - XCUBE_BRANCH=${XCUBE_BRANCH}
+        - XCUBE_DOCKER_BRANCH=${XCUBE_DOCKER_BRANCH}
         - XCUBE_USER_NAME=${XCUBE_USER_NAME}
     image: quay.io/bcdev/xcube-webui:${XCUBE_VERSION}
+    ports:
+      - "80:80"
+  xcube-gen:
+    build:
+      context: .
+      dockerfile: xcube-gen.docker
+      args:
+        - XCUBE_VERSION=${XCUBE_VERSION}
+        - XCUBE_DOCKER_BRANCH=${XCUBE_DOCKER_BRANCH}
+        - XCUBE_GEN_BRANCH=${XCUBE_GEN_BRANCH}
+        - XCUBE_USER_NAME=${XCUBE_USER_NAME}
+    image: quay.io/bcdev/xcube-gen:${XCUBE_VERSION}
     ports:
       - "80:80"
