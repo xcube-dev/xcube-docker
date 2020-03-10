@@ -1,7 +1,4 @@
-[![Docker Repository on Quay](https://quay.io/repository/dzelge/xcube/status "Docker Repository on Quay")](https://quay.io/repository/dzelge/xcube)
-
-# xcube-conda
-Repository for deploying xcube as a docker image on [quay.io](https://https://quay.io/repository/dzelge/xcube)
+[![Build Status](https://travis-ci.com/dcs4cop/xcube-docker.svg?branch=master)](https://travis-ci.com/dcs4cop/xcube-docker)
 
 ## Description
 
