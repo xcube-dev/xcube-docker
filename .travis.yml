@@ -7,7 +7,7 @@ services: docker
 
 before_script:
   - docker login -u $QUAY_USER -p $QUAY_PASSWORD quay.io
-  - cp .env_travis .env
+  - cp env_travis .env
 script:
   - docker-compose build
 
