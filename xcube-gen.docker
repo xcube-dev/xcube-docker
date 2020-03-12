@@ -28,7 +28,7 @@ USER ${XCUBE_USER_NAME}
 RUN git clone https://github.com/dcs4cop/xcube-gen /home/${XCUBE_USER_NAME}/xcube-gen
 
 WORKDIR /home/${XCUBE_USER_NAME}/xcube-gen
-RUN git checkout ${XCUBE_GEN_BRANCH}
+
 RUN conda env update -n xcube
 RUN source activate xcube && python setup.py install
 
