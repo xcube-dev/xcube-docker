@@ -55,7 +55,7 @@ services:
       dockerfile: xcube-gen.docker
       args:
         - XCUBE_VERSION=${XCUBE_VERSION}
-        - XCUBE_GEN_VERSION=${XCUBE_GEN_VERSION}
+        - XCUBE_GEN_BRANCH=${XCUBE_GEN_BRANCH}
         - XCUBE_USER_NAME=${XCUBE_USER_NAME}
     image: quay.io/bcdev/xcube-gen:${XCUBE_VERSION}
     ports:
