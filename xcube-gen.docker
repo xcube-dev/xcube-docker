@@ -10,6 +10,18 @@ LABEL maintainer="helge.dzierzon@brockmann-consult.de"
 LABEL name="xcube python dependencies"
 LABEL xcube_version=${XCUBE_VERSION}
 
+USER root
+RUN apt-get -y update && apt-get -y install curl unzip
+
+RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"; \
+    unzip awscliv2.zip; \
+    ./aws/install; \
+    aws --version
+
+RUN curl -LO https://storage.googleapis.com/kubernetes-release/release/`curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt`/bin/linux/amd64/kubectl; \
+    chmod +x ./kubectl; \
+    mv ./kubectl /usr/local/bin/kubectl; \
+    kubectl version --client
 
 USER ${XCUBE_USER_NAME}
 
@@ -17,8 +29,9 @@ RUN git clone https://github.com/dcs4cop/xcube-gen /home/${XCUBE_USER_NAME}/xcub
 
 WORKDIR /home/${XCUBE_USER_NAME}/xcube-gen
 RUN git checkout ${XCUBE_GEN_BRANCH}
+RUN conda env update -n xcube
 RUN source activate xcube && python setup.py install
 
 EXPOSE 8000
 
-CMD ["/bin/bash", "-c", "source activate xcube && xcube genserv start --port 8000 --address 0.0.0.0"]
+CMD ["/bin/bash", "-c", "source activate xcube && xcube genserv start --debug --port 8000 --address 0.0.0.0"]
