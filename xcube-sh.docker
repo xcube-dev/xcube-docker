@@ -3,21 +3,18 @@ ARG XCUBE_VERSION
 FROM quay.io/bcdev/xcube-python-deps:${XCUBE_VERSION}
 
 ARG XCUBE_VERSION
+ARG XCUBE_SH_VERSION
 ARG XCUBE_USER_NAME
-
 
 LABEL maintainer="helge.dzierzon@brockmann-consult.de"
 LABEL name="xcube python dependencies"
 LABEL xcube_version=${XCUBE_VERSION}
 
-
 USER ${XCUBE_USER_NAME}
 
-RUN git clone https://github.com/dcs4cop/xcube-gen /home/${XCUBE_USER_NAME}/xcube-gen
+RUN git clone https://github.com/dcs4cop/xcube-sh /home/${XCUBE_USER_NAME}/xcube-sh
 
-WORKDIR /home/${XCUBE_USER_NAME}/xcube-gen
+WORKDIR /home/${XCUBE_USER_NAME}/xcube-sh
 RUN source activate xcube && python setup.py install
 
-EXPOSE 8000
-
-CMD ["/bin/bash", "-c", "source activate xcube && xcube genserv start --port 8000 --address 0.0.0.0"]
+CMD ["/bin/bash"]
