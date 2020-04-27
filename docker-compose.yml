@@ -4,7 +4,7 @@ services:
   xcube-python-base:
     build:
       context: .
-      dockerfile: xcube-python-base.docker
+      dockerfile: xcube-python-base.dockerfile
       args:
         - XCUBE_VERSION=${XCUBE_VERSION}
         - XCUBE_DOCKER_BRANCH=${XCUBE_DOCKER_BRANCH}
@@ -14,7 +14,7 @@ services:
   xcube-python-deps:
     build:
       context: .
-      dockerfile: xcube-python-deps.docker
+      dockerfile: xcube-python-deps.dockerfile
       args:
         - XCUBE_VERSION=${XCUBE_VERSION}
         - XCUBE_DOCKER_BRANCH=${XCUBE_DOCKER_BRANCH}
@@ -23,7 +23,7 @@ services:
   xcube-webapi:
     build:
       context: .
-      dockerfile: xcube-webapi.docker
+      dockerfile: xcube-webapi.dockerfile
       args:
         - XCUBE_VERSION=${XCUBE_VERSION}
         - XCUBE_DOCKER_BRANCH=${XCUBE_DOCKER_BRANCH}
@@ -34,7 +34,7 @@ services:
   xcube-jupyterlab:
     build:
       context: .
-      dockerfile: xcube-jupyterlab.docker
+      dockerfile: xcube-jupyterlab.dockerfile
       args:
         - XCUBE_VERSION=${XCUBE_VERSION}
         - XCUBE_DOCKER_BRANCH=${XCUBE_DOCKER_BRANCH}
@@ -45,7 +45,7 @@ services:
   xcube-viewer:
     build:
       context: .
-      dockerfile: xcube-viewer.docker
+      dockerfile: xcube-viewer.dockerfile
       args:
         - XCUBE_VERSION=${XCUBE_VERSION}
         - XCUBE_DOCKER_BRANCH=${XCUBE_DOCKER_BRANCH}
@@ -56,7 +56,7 @@ services:
 #  xcube-gen:
 #    build:
 #      context: .
-#      dockerfile: xcube-gen.docker
+#      dockerfile: xcube-gen.dockerfile
 #      args:
 #        - XCUBE_VERSION=${XCUBE_VERSION}
 #        - XCUBE_DOCKER_BRANCH=${XCUBE_DOCKER_BRANCH}
