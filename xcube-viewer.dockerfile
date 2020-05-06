@@ -1,12 +1,15 @@
 FROM node:stretch-slim as build-deps
 
 ARG XCUBE_VERSION
-ARG XCUBE_DOCKER_BRANCH
 ARG XCUBE_USER_NAME
 
 LABEL maintainer="helge.dzierzon@brockmann-consult.de"
 LABEL name=xcube
 LABEL xcube_version=${XCUBE_VERSION}
+
+RUN echo "Building docker using args:"
+RUN echo "XCUBE_VERSION:${XCUBE_VERSION}"
+RUN echo "XCUBE_USER_NAME:${XCUBE_USER_NAME}"
 
 RUN apt-get -y update && apt-get install -y git
 

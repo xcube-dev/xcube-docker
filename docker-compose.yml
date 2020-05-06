@@ -7,7 +7,6 @@ services:
       dockerfile: xcube-python-base.dockerfile
       args:
         - XCUBE_VERSION=${XCUBE_VERSION}
-        - XCUBE_DOCKER_BRANCH=${XCUBE_DOCKER_BRANCH}
         - XCUBE_USER_NAME=${XCUBE_USER_NAME}
         - MINICONDA_VERSION=${MINICONDA_VERSION}
     image: quay.io/bcdev/xcube-python-base:${XCUBE_VERSION}
@@ -17,7 +16,6 @@ services:
       dockerfile: xcube-python-deps.dockerfile
       args:
         - XCUBE_VERSION=${XCUBE_VERSION}
-        - XCUBE_DOCKER_BRANCH=${XCUBE_DOCKER_BRANCH}
         - XCUBE_USER_NAME=${XCUBE_USER_NAME}
     image: quay.io/bcdev/xcube-python-deps:${XCUBE_VERSION}
   xcube-webapi:
@@ -26,7 +24,6 @@ services:
       dockerfile: xcube-webapi.dockerfile
       args:
         - XCUBE_VERSION=${XCUBE_VERSION}
-        - XCUBE_DOCKER_BRANCH=${XCUBE_DOCKER_BRANCH}
         - XCUBE_USER_NAME=${XCUBE_USER_NAME}
     image: quay.io/bcdev/xcube-webapi:${XCUBE_VERSION}
     ports:
@@ -37,7 +34,6 @@ services:
       dockerfile: xcube-jupyterlab.dockerfile
       args:
         - XCUBE_VERSION=${XCUBE_VERSION}
-        - XCUBE_DOCKER_BRANCH=${XCUBE_DOCKER_BRANCH}
         - XCUBE_USER_NAME=${XCUBE_USER_NAME}
     image: quay.io/bcdev/xcube-jupyterlab:${XCUBE_VERSION}
     ports:
@@ -48,20 +44,26 @@ services:
       dockerfile: xcube-viewer.dockerfile
       args:
         - XCUBE_VERSION=${XCUBE_VERSION}
-        - XCUBE_DOCKER_BRANCH=${XCUBE_DOCKER_BRANCH}
         - XCUBE_USER_NAME=${XCUBE_USER_NAME}
     image: quay.io/bcdev/xcube-viewer:${XCUBE_VERSION}
     ports:
       - "80:80"
-#  xcube-gen:
-#    build:
-#      context: .
-#      dockerfile: xcube-gen.dockerfile
-#      args:
-#        - XCUBE_VERSION=${XCUBE_VERSION}
-#        - XCUBE_DOCKER_BRANCH=${XCUBE_DOCKER_BRANCH}
-#        - XCUBE_GEN_VERSION=${XCUBE_GEN_VERSION}
-#        - XCUBE_USER_NAME=${XCUBE_USER_NAME}
-#    image: quay.io/bcdev/xcube-gen:${XCUBE_GEN_VERSION}
-#    ports:
-#      - "8000:8000"
+  xcube-gen-api:
+    build:
+      context: .
+      dockerfile: xcube-gen-api.dockerfile
+      args:
+        - XCUBE_GEN_VERSION=${XCUBE_GEN_VERSION}
+    image: quay.io/bcdev/xcube-gen:${XCUBE_GEN_VERSION}
+    ports:
+      - "8000:8000"
+  xcube-gen-ui:
+    build:
+      context: .
+      dockerfile: xcube-gen-ui.dockerfile
+      args:
+        - XCUBE_GEN_VERSION=${XCUBE_GEN_VERSION}
+        - XCUBE_VIEWER_VERSION=${XCUBE_VIEWER_VERSION}
+    image: quay.io/bcdev/xcube-gen-webapi:${XCUBE_GEN_VERSION}
+    ports:
+      - "81:80"
