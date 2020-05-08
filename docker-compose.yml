@@ -48,22 +48,3 @@ services:
     image: quay.io/bcdev/xcube-viewer:${XCUBE_VERSION}
     ports:
       - "80:80"
-  xcube-gen-api:
-    build:
-      context: .
-      dockerfile: xcube-gen-api.dockerfile
-      args:
-        - XCUBE_GEN_VERSION=${XCUBE_GEN_VERSION}
-    image: quay.io/bcdev/xcube-gen:${XCUBE_GEN_VERSION}
-    ports:
-      - "8000:8000"
-  xcube-gen-ui:
-    build:
-      context: .
-      dockerfile: xcube-gen-ui.dockerfile
-      args:
-        - XCUBE_GEN_VERSION=${XCUBE_GEN_VERSION}
-        - XCUBE_VIEWER_VERSION=${XCUBE_VIEWER_VERSION}
-    image: quay.io/bcdev/xcube-gen-webapi:${XCUBE_GEN_VERSION}
-    ports:
-      - "81:80"
