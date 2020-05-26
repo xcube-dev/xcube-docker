@@ -2,13 +2,15 @@ ARG MINICONDA_VERSION
 
 FROM continuumio/miniconda3:${MINICONDA_VERSION}
 ARG XCUBE_VERSION
-ARG XCUBE_DOCKER_BRANCH
 ARG XCUBE_USER_NAME
 
 LABEL maintainer="helge.dzierzon@brockmann-consult.de"
 LABEL name="XCUBE python miniconda base"
 LABEL XCUBE_version=${XCUBE_VERSION}
-LABEL XCUBE_DOCKER_BRANCH=${XCUBE_DOCKER_BRANCH}
+
+RUN echo "Building docker using args:"
+RUN echo "XCUBE_VERSION:${XCUBE_VERSION}"
+RUN echo "XCUBE_USER_NAME:${XCUBE_USER_NAME}"
 
 USER root
 RUN apt-get -y update && apt-get -y install vim
