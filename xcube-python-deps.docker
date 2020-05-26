@@ -16,8 +16,7 @@ LABEL XCUBE_DOCKER_BRANCH=${XCUBE_DOCKER_BRANCH}
 USER ${XCUBE_USER_NAME}
 
 RUN whoami
-RUN conda create -n xcube -c conda-forge xcube=${XCUBE_VERSION}
-RUN conda clean -afy
+RUN mamba create -y -n xcube -c conda-forge xcube=${XCUBE_VERSION}
 RUN conda info --envs
 RUN source activate xcube && conda list
 

@@ -24,5 +24,6 @@ USER ${XCUBE_USER_NAME}
 WORKDIR /workspace
 
 RUN source activate base && conda update -n base conda && conda init
+RUN source activate base && conda install -n base -c conda-forge mamba pip
 
 CMD ["/bin/bash"]

@@ -7,7 +7,7 @@ services:
       dockerfile: xcube-python-base.docker
       args:
         - XCUBE_VERSION=${XCUBE_VERSION}
-        - XCUBE_DOCKER_BRANCH=${XCUBE_DOCKER_BRANCH}
+        - XCUBE_DOCKER_VERSION=${XCUBE_DOCKER_VERSION}
         - XCUBE_USER_NAME=${XCUBE_USER_NAME}
         - MINICONDA_VERSION=${MINICONDA_VERSION}
     image: quay.io/bcdev/xcube-python-base:${XCUBE_VERSION}
@@ -17,16 +17,16 @@ services:
       dockerfile: xcube-python-deps.docker
       args:
         - XCUBE_VERSION=${XCUBE_VERSION}
-        - XCUBE_DOCKER_BRANCH=${XCUBE_DOCKER_BRANCH}
+        - XCUBE_DOCKER_VERSION=${XCUBE_DOCKER_VERSION}
         - XCUBE_USER_NAME=${XCUBE_USER_NAME}
     image: quay.io/bcdev/xcube-python-deps:${XCUBE_VERSION}
-  xcube-webapi:
+  xcube:
     build:
       context: .
-      dockerfile: xcube-webapi.docker
+      dockerfile: xcube.docker
       args:
         - XCUBE_VERSION=${XCUBE_VERSION}
-        - XCUBE_DOCKER_BRANCH=${XCUBE_DOCKER_BRANCH}
+        - XCUBE_DOCKER_VERSION=${XCUBE_DOCKER_VERSION}
         - XCUBE_USER_NAME=${XCUBE_USER_NAME}
     image: quay.io/bcdev/xcube-webapi:${XCUBE_VERSION}
     ports:
@@ -37,7 +37,7 @@ services:
       dockerfile: xcube-jupyterlab.docker
       args:
         - XCUBE_VERSION=${XCUBE_VERSION}
-        - XCUBE_DOCKER_BRANCH=${XCUBE_DOCKER_BRANCH}
+        - XCUBE_DOCKER_VERSION=${XCUBE_DOCKER_VERSION}
         - XCUBE_USER_NAME=${XCUBE_USER_NAME}
     image: quay.io/bcdev/xcube-jupyterlab:${XCUBE_VERSION}
     ports:
@@ -48,7 +48,7 @@ services:
       dockerfile: xcube-viewer.docker
       args:
         - XCUBE_VERSION=${XCUBE_VERSION}
-        - XCUBE_DOCKER_BRANCH=${XCUBE_DOCKER_BRANCH}
+        - XCUBE_DOCKER_VERSION=${XCUBE_DOCKER_VERSION}
         - XCUBE_USER_NAME=${XCUBE_USER_NAME}
     image: quay.io/bcdev/xcube-viewer:${XCUBE_VERSION}
     ports:

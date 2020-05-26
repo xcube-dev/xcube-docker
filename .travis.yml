@@ -8,8 +8,12 @@ services: docker
 before_script:
   - docker login -u $QUAY_USER -p $QUAY_PASSWORD quay.io
   - cp .env_travis .env
+  - pip install --user shyaml
+
 script:
-  - docker-compose build
+  - for svc in $(cat docker-compose.yml | shyaml keys  services);
+      do docker-compose build $svc;
+    done;
 
 deploy:
   provider: script
