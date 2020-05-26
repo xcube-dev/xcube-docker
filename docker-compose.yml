@@ -28,7 +28,7 @@ services:
         - XCUBE_VERSION=${XCUBE_VERSION}
         - XCUBE_DOCKER_VERSION=${XCUBE_DOCKER_VERSION}
         - XCUBE_USER_NAME=${XCUBE_USER_NAME}
-    image: quay.io/bcdev/xcube-webapi:${XCUBE_VERSION}
+    image: quay.io/bcdev/xcube:${XCUBE_VERSION}
     ports:
       - 4000:4000
   xcube-jupyterlab:
