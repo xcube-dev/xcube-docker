@@ -1,6 +1,6 @@
 ARG XCUBE_VERSION
 
-FROM quay.io/bcdev/xcube-python-deps:${XCUBE_VERSION}
+FROM quay.io/bcdev/xcube:${XCUBE_VERSION}
 
 ARG XCUBE_VERSION
 ARG XCUBE_DOCKER_VERSION

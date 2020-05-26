@@ -11,15 +11,6 @@ services:
         - XCUBE_USER_NAME=${XCUBE_USER_NAME}
         - MINICONDA_VERSION=${MINICONDA_VERSION}
     image: quay.io/bcdev/xcube-python-base:${XCUBE_VERSION}
-  xcube-python-deps:
-    build:
-      context: .
-      dockerfile: xcube-python-deps.docker
-      args:
-        - XCUBE_VERSION=${XCUBE_VERSION}
-        - XCUBE_DOCKER_VERSION=${XCUBE_DOCKER_VERSION}
-        - XCUBE_USER_NAME=${XCUBE_USER_NAME}
-    image: quay.io/bcdev/xcube-python-deps:${XCUBE_VERSION}
   xcube:
     build:
       context: .
