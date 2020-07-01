@@ -11,9 +11,10 @@ before_script:
   - pip install --user shyaml
 
 script:
-  - for svc in $(cat docker-compose.yml | shyaml keys  services);
-      do docker-compose build $svc;
-    done;
+  - docker-compose build xcube-python-base
+  - docker-compose build xcube
+  - docker-compose build xcube-jupyterlab
+  - docker-compose build xcube-viewer
 
 deploy:
   provider: script

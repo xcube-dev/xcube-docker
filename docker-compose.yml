@@ -44,15 +44,3 @@ services:
     image: quay.io/bcdev/xcube-viewer:${XCUBE_VERSION}
     ports:
       - "80:80"
-#  xcube-gen:
-#    build:
-#      context: .
-#      dockerfile: xcube-gen.docker
-#      args:
-#        - XCUBE_VERSION=${XCUBE_VERSION}
-#        - XCUBE_DOCKER_BRANCH=${XCUBE_DOCKER_BRANCH}
-#        - XCUBE_GEN_VERSION=${XCUBE_GEN_VERSION}
-#        - XCUBE_USER_NAME=${XCUBE_USER_NAME}
-#    image: quay.io/bcdev/xcube-gen:${XCUBE_GEN_VERSION}
-#    ports:
-#      - "8000:8000"
