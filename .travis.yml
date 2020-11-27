@@ -13,6 +13,7 @@ before_script:
 script:
   - docker-compose build xcube-python-base
   - docker-compose build xcube
+  - docker-compose build xcube-gen
   - docker-compose build xcube-jupyterlab
   - docker-compose build xcube-viewer
 

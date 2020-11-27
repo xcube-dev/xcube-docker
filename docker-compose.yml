@@ -22,6 +22,17 @@ services:
     image: quay.io/bcdev/xcube:${XCUBE_VERSION}
     ports:
       - 4000:4000
+  xcube-gen:
+    build:
+      context: .
+      dockerfile: xcube-gen.dockerfile
+      args:
+        - XCUBE_VERSION=${XCUBE_VERSION}
+        - XCUBE_DOCKER_VERSION=${XCUBE_DOCKER_VERSION}
+        - XCUBE_USER_NAME=${XCUBE_USER_NAME}
+    image: quay.io/bcdev/xcube-gen:${XCUBE_VERSION}
+    ports:
+      - 8000:8000
   xcube-jupyterlab:
     build:
       context: .
