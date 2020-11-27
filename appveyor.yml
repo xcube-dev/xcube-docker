@@ -1,0 +1,21 @@
+image: Ubuntu
+
+services:
+  - docker
+
+install:
+  - sh: docker login -u $QUAY_USER -p $QUAY_PASSWORD quay.io
+  - sh: cp .env_travis .env
+  - sh: pip install --user shyaml
+
+build_script:
+  - sh: docker-compose build xcube-python-base
+  - sh: docker-compose build xcube
+  - sh: docker-compose build xcube-gen
+  - sh: docker-compose build xcube-jupyterlab
+  - sh: docker-compose build xcube-viewer
+
+deploy:
+  - provider: Script
+    script: docker-compose push
+

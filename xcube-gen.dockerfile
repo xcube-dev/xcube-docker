@@ -16,8 +16,8 @@ RUN echo "XCUBE_USER_NAME:${XCUBE_USER_NAME}"
 
 USER ${XCUBE_USER_NAME}
 
-RUN mamba install -c conda-forge xcube-sh
-RUN mamba install -c conda-forge xcube-cci
-RUN mamba install -c conda-forge xcube-cds
+RUN mamba install -y -c conda-forge xcube-sh
+RUN mamba install -y -c conda-forge xcube-cci
+RUN mamba install -y -c conda-forge xcube-cds
 
 CMD ["/bin/bash"]

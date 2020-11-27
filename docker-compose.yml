@@ -44,14 +44,3 @@ services:
     image: quay.io/bcdev/xcube-jupyterlab:${XCUBE_VERSION}
     ports:
       - "8888:8888"
-  xcube-viewer:
-    build:
-      context: .
-      dockerfile: xcube-viewer.docker
-      args:
-        - XCUBE_VERSION=${XCUBE_VERSION}
-        - XCUBE_DOCKER_VERSION=${XCUBE_DOCKER_VERSION}
-        - XCUBE_USER_NAME=${XCUBE_USER_NAME}
-    image: quay.io/bcdev/xcube-viewer:${XCUBE_VERSION}
-    ports:
-      - "80:80"
