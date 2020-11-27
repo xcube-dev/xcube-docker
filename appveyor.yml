@@ -1,8 +1,5 @@
 image: Ubuntu
 
-services:
-  - docker
-
 install:
   - sh: docker login -u $QUAY_USER -p $QUAY_PASSWORD quay.io
   - sh: cp .env_travis .env
