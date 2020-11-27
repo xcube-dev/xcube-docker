@@ -12,4 +12,10 @@ build_script:
   - sh: docker-compose build xcube
   - sh: docker-compose build xcube-gen
   - sh: docker-compose build xcube-jupyterlab
+
+deploy_script:
   - sh: docker-compose push
+#  - sh: >-
+#    if [ -n "$APPVEYOR_REPO_TAG_NAME" ]; then
+#      docker-compose push
+#    fi;
