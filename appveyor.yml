@@ -12,8 +12,4 @@ build_script:
   - sh: docker-compose build xcube
   - sh: docker-compose build xcube-gen
   - sh: docker-compose build xcube-jupyterlab
-
-deploy:
-  - provider: Script
-    script: bash -c docker-compose push
-
+  - sh: docker-compose push
