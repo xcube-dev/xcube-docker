@@ -18,6 +18,5 @@ build_script:
 
 deploy:
   - provider: Script
-    script:
-      - sh: docker-compose push
+    script: bash -c docker-compose push
 
