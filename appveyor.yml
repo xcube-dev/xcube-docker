@@ -7,6 +7,8 @@ install:
   - sh: docker login -u $QUAY_USER -p $QUAY_PASSWORD quay.io
   - sh: cp .env_travis .env
   - sh: pip install --user shyaml
+  - sh: sudo apt update
+  - sh: sudo apt install docker-compose
 
 build_script:
   - sh: docker-compose build xcube-python-base
