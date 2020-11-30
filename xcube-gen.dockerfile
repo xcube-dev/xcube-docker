@@ -20,4 +20,6 @@ RUN mamba install -y -c conda-forge xcube-sh
 RUN mamba install -y -c conda-forge xcube-cci
 RUN mamba install -y -c conda-forge xcube-cds
 
+ADD resources/datastores.json datastores.json
+
 CMD ["/bin/bash"]
