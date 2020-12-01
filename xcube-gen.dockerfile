@@ -16,10 +16,10 @@ RUN echo "XCUBE_USER_NAME:${XCUBE_USER_NAME}"
 
 USER ${XCUBE_USER_NAME}
 
-RUN mamba install -y -c conda-forge xcube-sh
-RUN mamba install -y -c conda-forge xcube-cci
-RUN mamba install -y -c conda-forge xcube-cds
+RUN source activate xcube && mamba install -y -c conda-forge xcube-sh
+RUN source activate xcube && mamba install -y -c conda-forge xcube-cci
+RUN source activate xcube && mamba install -y -c conda-forge xcube-cds
 
-ADD resources/datastores.json datastores.json
+ADD resources/edc-store-config.yml edc-store-config.yml
 
 CMD ["/bin/bash"]
