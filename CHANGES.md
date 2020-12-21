@@ -1,6 +1,7 @@
 ## Changes version 0.1.3
 
 * Added xcubehub base image
+* Changed xcube version to 0.6.1
 
 ## Changes version 0.1.2
 
