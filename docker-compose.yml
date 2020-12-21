@@ -52,6 +52,7 @@ services:
         - XCUBEHUB_BASE_VERSION=${XCUBEHUB_BASE_VERSION}
         - XCUBEHUB_VERSION=${XCUBEHUB_VERSION}
         - XCUBE_USER_NAME=${XCUBE_USER_NAME}
+        - SSH_PRIVATE_KEY=${SSH_PRIVATE_KEY}
     image: quay.io/bcdev/xcubehub-base:${XCUBE_VERSION}
     ports:
       - "4000:4000"

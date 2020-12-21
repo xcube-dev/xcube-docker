@@ -13,7 +13,7 @@ build_script:
   - sh: docker-compose build xcube
   - sh: docker-compose build xcube-gen
   - sh: docker-compose build xcube-jupyterlab
-  - sh: docker-compose build xcubehub-base
+  - sh: docker-compose build xcubehub-base --build-arg SSH_PRIVATE_KEY=${SSH_PRIVATE_KEY}
 
 deploy_script:
   - sh: docker-compose push
