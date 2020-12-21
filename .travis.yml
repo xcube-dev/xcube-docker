@@ -16,6 +16,7 @@ script:
   - docker-compose build xcube-gen
   - docker-compose build xcube-jupyterlab
   - docker-compose build xcube-viewer
+  - docker-compose build xcubehub-base
 
 deploy:
   provider: script
