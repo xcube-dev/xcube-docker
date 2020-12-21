@@ -32,6 +32,7 @@ WORKDIR /tmp
 
 RUN git clone git@github.com:bcdev/xcube-hub
 RUN mamba env create xcube-hub/environment.yaml
+RUN rm /root/.ssh/id_rsa
 
 USER ${XCUBE_USER_NAME}
 
