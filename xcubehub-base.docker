@@ -28,6 +28,9 @@ RUN chmod 600 /root/.ssh/id_rsa
 RUN touch /root/.ssh/known_hosts
 RUN ssh-keyscan github.com >> /root/.ssh/known_hosts
 
+RUN source activate base && conda update -n base conda && conda init
+RUN source activate base && conda install -y -c conda-forge mamba
+
 WORKDIR /tmp
 
 RUN git clone git@github.com:bcdev/xcube-hub
@@ -35,8 +38,5 @@ RUN mamba env create xcube-hub/environment.yaml
 RUN rm /root/.ssh/id_rsa
 
 USER ${XCUBE_USER_NAME}
-
-RUN source activate base && conda update -n base conda && conda init
-RUN source activate base && conda install -y -c conda-forge mamba
 
 WORKDIR /home/${XCUBE_USER_NAME}
