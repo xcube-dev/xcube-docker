@@ -12,6 +12,7 @@ build_script:
   - sh: docker-compose build xcube
   - sh: docker-compose build xcube-gen
   - sh: docker-compose build xcube-jupyterlab
+  - sh: docker-compose build xcubehub-base
 
 deploy_script:
   - sh: docker-compose push
