@@ -30,9 +30,14 @@ services:
         - XCUBE_VERSION=${XCUBE_VERSION}
         - XCUBE_DOCKER_VERSION=${XCUBE_DOCKER_VERSION}
         - XCUBE_USER_NAME=${XCUBE_USER_NAME}
-    image: quay.io/bcdev/xcube-gen:${XCUBE_VERSION}
+        - XCUBE_SH_VERSION=${XCUBE_SH_VERSION}
+        - XCUBE_CCI_VERSION=${XCUBE_CCI_VERSION}
+        - XCUBE_CDS_VERSION=${XCUBE_CDS_VERSION}
+    image: quay.io/bcdev/xcube-gen:${XCUBE_GEN_VERSION}
     ports:
       - 8000:8000
+    volumes:
+      - ./:/workspace
   xcube-jupyterlab:
     build:
       context: .
