@@ -6,12 +6,14 @@ install:
   - sh: pip install --user shyaml
   - sh: sudo apt-get -y update
   - sh: sudo apt-get -y install docker-compose
+  - sh: cp .env_travis .env
 
 build_script:
   - sh: docker-compose build xcube-python-base
   - sh: docker-compose build xcube
   - sh: docker-compose build xcube-gen
   - sh: docker-compose build xcube-jupyterlab
+  - sh: docker-compose build --build-arg SSH_PRIVATE_KEY="${SSH_PRIVATE_KEY}" xcubehub-base
 
 deploy_script:
   - sh: docker-compose push
