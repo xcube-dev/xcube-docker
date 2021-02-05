@@ -1,9 +1,12 @@
+## Changes version 0.1.4
+
+* Changed xcube sh version for xcube-gen to 0.6.2
+* Set xcube-gen version to 0.6.1
+
 ## Changes version 0.1.3
 
 * Added xcubehub base image
 * Changed xcube version to 0.6.1
-* Changed xcube sh version for xcube-gen to 0.6.2
-* Set xcube-gen version to 0.6.1
 
 ## Changes version 0.1.2
 
