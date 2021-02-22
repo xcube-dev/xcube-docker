@@ -1,3 +1,8 @@
+## Changes version 0.1.5
+
+- The xcube-gen and xcube dockerfile can now handle 
+  dev GutHub releases
+
 ## Changes version 0.1.4
 
 * Changed xcube sh version for xcube-gen to 0.6.2

@@ -11,7 +11,7 @@ In order to update the docker images to a new xcube version, follow these steps:
 - When teh local test is successful, create a version release/tag which should be the same as the xcube version
 - The tag will trigger a quay build. Quay will set the docker image version according to the used
   xcube version/release tag
-- Once the deployment steps have finished and the docker image has been built on quay
+- Once the deployment steps have finished, and the docker image has been built on quay
   you can use the docker image ```quay.io/dzelge/xcube:[version]``` by e.g.
   ```docker run quay.io/dzelge/xcube:[version]```
 

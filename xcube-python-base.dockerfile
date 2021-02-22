@@ -13,7 +13,7 @@ RUN echo "XCUBE_VERSION:${XCUBE_VERSION}"
 RUN echo "XCUBE_USER_NAME:${XCUBE_USER_NAME}"
 
 USER root
-RUN apt-get -y update && apt-get -y install vim
+RUN apt-get -y update && apt-get -y install vim unzip
 
 SHELL ["/bin/bash", "-c"]
 RUN groupadd -g 1000 ${XCUBE_USER_NAME}

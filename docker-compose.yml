@@ -4,21 +4,22 @@ services:
   xcube-python-base:
     build:
       context: .
-      dockerfile: xcube-python-base.docker
+      dockerfile: xcube-python-base.dockerfile
       args:
         - XCUBE_VERSION=${XCUBE_VERSION}
         - XCUBE_DOCKER_VERSION=${XCUBE_DOCKER_VERSION}
         - XCUBE_USER_NAME=${XCUBE_USER_NAME}
         - MINICONDA_VERSION=${MINICONDA_VERSION}
-    image: quay.io/bcdev/xcube-python-base:${XCUBE_VERSION}
+    image: quay.io/bcdev/xcube-python-base:${XCUBE_PYTHON_BASE_VERSION}
   xcube:
     build:
       context: .
-      dockerfile: xcube.docker
+      dockerfile: xcube.dockerfile
       args:
         - XCUBE_VERSION=${XCUBE_VERSION}
         - XCUBE_DOCKER_VERSION=${XCUBE_DOCKER_VERSION}
         - XCUBE_USER_NAME=${XCUBE_USER_NAME}
+        - XCUBE_PYTHON_BASE_VERSION=${XCUBE_PYTHON_BASE_VERSION}
     image: quay.io/bcdev/xcube:${XCUBE_VERSION}
     ports:
       - 4000:4000

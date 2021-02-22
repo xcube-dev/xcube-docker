@@ -1,6 +1,6 @@
-ARG XCUBE_VERSION
+ARG XCUBE_PYTHON_BASE_VERSION
 
-FROM quay.io/bcdev/xcube-python-base:${XCUBE_VERSION}
+FROM quay.io/bcdev/xcube-python-base:${XCUBE_PYTHON_BASE_VERSION}
 
 ARG XCUBE_VERSION
 ARG XCUBE_USER_NAME
@@ -16,11 +16,17 @@ RUN echo "XCUBE_USER_NAME:${XCUBE_USER_NAME}"
 
 USER ${XCUBE_USER_NAME}
 
+WORKDIR /tmp
+
+ADD scripts/install_xcube.sh .
+
 RUN whoami
-RUN mamba create -y -n xcube -c conda-forge xcube=${XCUBE_VERSION}
+RUN bash install_xcube.sh
 RUN conda info --envs
 RUN source activate xcube && conda list
 
 RUN echo "conda activate xcube" >> ~/.bashrc
+
+WORKDIR /home/${XCUBE_USER_NAME}
 
 CMD ["/bin/bash"]
