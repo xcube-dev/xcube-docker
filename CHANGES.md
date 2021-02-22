@@ -1,7 +1,8 @@
 ## Changes version 0.1.5
 
 - The xcube-gen and xcube dockerfile can now handle 
-  dev GutHub releases
+  dev GitHub releases
+- The xcube Python base image has now its own version  
 
 ## Changes version 0.1.4
 
