@@ -25,6 +25,7 @@ ADD scripts/install_xcube-datastore.sh .
 RUN bash install_xcube-datastore.sh xcube-sh ${XCUBE_SH_VERSION}
 RUN bash install_xcube-datastore.sh xcube-cci ${XCUBE_CCI_VERSION}
 RUN bash install_xcube-datastore.sh xcube-cds ${XCUBE_CDS_VERSION}
+RUN source activate xcube && mamba install oauthlib requests-oauthlib
 
 WORKDIR /home/${XCUBE_USER_NAME}
 
