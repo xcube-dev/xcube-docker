@@ -1,3 +1,12 @@
+## Changes version 0.1.6
+
+- Set versions to:
+  - xcube-base 0.7.0
+  - xcube: 0.7.0
+  - xcube-sh: 0.7.0
+  - xcube-cds: 0.7.0
+  - xcube-cci: 0.7.0    
+
 ## Changes version 0.1.5
 
 - The xcube-gen and xcube dockerfile can now handle 
