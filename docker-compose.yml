@@ -17,6 +17,7 @@ services:
       dockerfile: xcube.dockerfile
       args:
         - XCUBE_VERSION=${XCUBE_VERSION}
+        - XCUBE_INSTALL_MODE=${XCUBE_INSTALL_MODE}
         - XCUBE_USER_CONDA_FORGE=${XCUBE_USER_CONDA_FORGE}
         - XCUBE_DOCKER_VERSION=${XCUBE_DOCKER_VERSION}
         - XCUBE_USER_NAME=${XCUBE_USER_NAME}
@@ -33,8 +34,11 @@ services:
         - XCUBE_DOCKER_VERSION=${XCUBE_DOCKER_VERSION}
         - XCUBE_USER_NAME=${XCUBE_USER_NAME}
         - XCUBE_SH_VERSION=${XCUBE_SH_VERSION}
+        - XCUBE_SH_INSTALL_MODE=${XCUBE_SH_INSTALL_MODE}
         - XCUBE_CCI_VERSION=${XCUBE_CCI_VERSION}
+        - XCUBE_CCI_INSTALL_MODE=${XCUBE_CCI_INSTALL_MODE}
         - XCUBE_CDS_VERSION=${XCUBE_CDS_VERSION}
+        - XCUBE_CDS_INSTALL_MODE=${XCUBE_CDS_INSTALL_MODE}
     image: quay.io/bcdev/xcube-gen:${XCUBE_GEN_VERSION}
     ports:
       - 8000:8000
@@ -45,7 +49,7 @@ services:
       context: .
       dockerfile: xcube-jupyterlab.docker
       args:
-        - XCUBE_VERSION=${XCUBE_VERSION}
+        - XCUBE_GEN_VERSION=${XCUBE_GEN_VERSION}
         - XCUBE_DOCKER_VERSION=${XCUBE_DOCKER_VERSION}
         - XCUBE_USER_NAME=${XCUBE_USER_NAME}
     image: quay.io/bcdev/xcube-jupyterlab:${XCUBE_VERSION}
@@ -54,7 +58,7 @@ services:
   xcubehub-base:
     build:
       context: .
-      dockerfile: xcubehub-base.docker
+      dockerfile: xcubehub-base.dockerfile
       args:
         - XCUBEHUB_BASE_VERSION=${XCUBEHUB_BASE_VERSION}
         - XCUBEHUB_VERSION=${XCUBEHUB_VERSION}

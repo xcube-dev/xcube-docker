@@ -26,7 +26,9 @@ RUN source activate base && conda install -y -c conda-forge mamba
 
 WORKDIR /tmp
 
-RUN git clone git@github.com:bcdev/xcube-hub
+RUN git clone https://github.com/bcdev/xcube-hub.git
+
+WORKDIR /tmp/xcube-hub
 RUN mamba env create xcube-hub/environment.yaml
 
 USER ${XCUBE_USER_NAME}

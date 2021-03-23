@@ -4,7 +4,7 @@ FROM quay.io/bcdev/xcube-python-base:${XCUBE_PYTHON_BASE_VERSION}
 
 ARG XCUBE_VERSION
 ARG XCUBE_USER_NAME
-
+ARG XCUBE_INSTALL_MODE
 
 LABEL maintainer="helge.dzierzon@brockmann-consult.de"
 LABEL name="xcube python dependencies"
@@ -20,7 +20,6 @@ WORKDIR /tmp
 
 ADD scripts/install_xcube.sh .
 
-RUN whoami
 RUN bash install_xcube.sh
 RUN conda info --envs
 RUN source activate xcube && conda list
@@ -28,5 +27,6 @@ RUN source activate xcube && conda list
 RUN echo "conda activate xcube" >> ~/.bashrc
 
 WORKDIR /home/${XCUBE_USER_NAME}
+
 
 CMD ["/bin/bash"]
