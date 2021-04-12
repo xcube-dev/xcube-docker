@@ -1,3 +1,7 @@
+## Changes version 0.1.8
+
+- Set xcube version to 0.7.2
+
 ## Changes version 0.1.7
 
 - Added installation modes:
