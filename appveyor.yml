@@ -2,7 +2,6 @@ image: Ubuntu
 
 install:
   - sh: docker login -u $QUAY_USER -p $QUAY_PASSWORD quay.io
-  - sh: cp .env_travis .env
   - sh: pip install --user shyaml
   - sh: sudo apt-get -y update
   - sh: sudo apt-get -y install docker-compose
