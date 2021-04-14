@@ -1,3 +1,21 @@
+## Changes in 0.1.9.dev1 (in development)
+
+Updated versions to:
+
+    MINICONDA_VERSION=4.7.12
+    JUPYTERLAB_VERSION=latest
+    XCUBE_PYTHON_BASE_VERSION=0.8.0
+    XCUBE_INSTALL_MODE=github
+    XCUBE_VERSION=0.8.0.dev7
+    XCUBE_GEN_VERSION=0.8.0.dev1
+    XCUBE_SH_INSTALL_MODE=github
+    XCUBE_SH_VERSION=0.8.0.dev1
+    XCUBE_CCI_INSTALL_MODE=github
+    XCUBE_CCI_VERSION=0.8.0.dev1
+    XCUBE_CDS_INSTALL_MODE=github
+    XCUBE_CDS_VERSION=0.8.0.dev0
+    XCUBE_DOCKER_VERSION=0.1.9.dev1
+    XCUBE_USER_NAME=xcube
 ## Changes version 0.1.8
 
 - Set xcube version to 0.7.2
