@@ -67,3 +67,13 @@ services:
     image: quay.io/bcdev/xcubehub-base:${XCUBE_VERSION}
     ports:
       - "4000:4000"
+  xcube-geodb:
+    build:
+      context: .
+      dockerfile: xcube-geodb-restapi.dockerfile
+      args:
+        - XCUBE_GEODB_RESTAPI_DOCKER_VERSION=${XCUBE_GEODB_RESTAPI_DOCKER_VERSION}
+        - XCUBE_GEODB_POSTGREST_VERSION=${XCUBE_GEODB_POSTGREST_VERSION}
+    image: quay.io/bcdev/xcube-geodb:${XCUBE_GEODB_RESTAPI_DOCKER_VERSION}
+    ports:
+      - "3000:3000"

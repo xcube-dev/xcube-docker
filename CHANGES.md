@@ -1,4 +1,8 @@
-## Changes in 0.1.9.dev1 (in development)
+## Changes in 0.1.9
+
+- Added xcube geodb docker file as we need psmisc
+  installed for postgres cache reloads in our postgrest 
+  docker images
 
 Updated versions to:
 
@@ -6,16 +10,19 @@ Updated versions to:
     JUPYTERLAB_VERSION=latest
     XCUBE_PYTHON_BASE_VERSION=0.8.0
     XCUBE_INSTALL_MODE=github
-    XCUBE_VERSION=0.8.0.dev7
-    XCUBE_GEN_VERSION=0.8.0.dev1
+    XCUBE_VERSION=0.8.0
+    XCUBE_GEN_VERSION=0.8.0
     XCUBE_SH_INSTALL_MODE=github
-    XCUBE_SH_VERSION=0.8.0.dev1
+    XCUBE_SH_VERSION=0.8.0
     XCUBE_CCI_INSTALL_MODE=github
-    XCUBE_CCI_VERSION=0.8.0.dev1
+    XCUBE_CCI_VERSION=0.8.0
     XCUBE_CDS_INSTALL_MODE=github
-    XCUBE_CDS_VERSION=0.8.0.dev0
-    XCUBE_DOCKER_VERSION=0.1.9.dev1
+    XCUBE_CDS_VERSION=0.8.0
+    XCUBE_DOCKER_VERSION=0.1.9
     XCUBE_USER_NAME=xcube
+    XCUBE_GEODB_RESTAPI_DOCKER_VERSION=0.1.0
+    XCUBE_GEODB_POSTGREST_VERSION=v7.0.1
+
 ## Changes version 0.1.8
 
 - Set xcube version to 0.7.2
