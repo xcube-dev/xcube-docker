@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.com/dcs4cop/xcube-docker.svg?branch=master)](https://travis-ci.com/dcs4cop/xcube-docker)
+[![Build status](https://ci.appveyor.com/api/projects/status/hm5hb74v568v9i8s?svg=true)](https://ci.appveyor.com/project/bcdev/xcube-docker)
 
 ## Versions used
 
