@@ -1,3 +1,9 @@
+# Changes in 0.1.10
+
+Updated versions to:
+
+    XCUBE_VERSION=0.8.1
+
 ## Changes in 0.1.9
 
 - Added xcube geodb docker file as we need psmisc
