@@ -1,4 +1,10 @@
-# Changes in 0.1.10
+## Changes in 0.1.11
+
+Updated versions to:
+
+    XCUBE_GEN_VERSION=0.8.1
+
+## Changes in 0.1.10
 
 Updated versions to:
 
