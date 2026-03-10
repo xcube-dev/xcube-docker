@@ -1,3 +1,7 @@
+# Archived 2026-03-10
+
+Repository no longer in use, so archived after discussion with team.
+
 [![Build status](https://ci.appveyor.com/api/projects/status/hm5hb74v568v9i8s?svg=true)](https://ci.appveyor.com/project/bcdev/xcube-docker)
 
 ## Versions used
